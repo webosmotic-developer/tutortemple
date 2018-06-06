@@ -39,10 +39,10 @@ export default class UsersDAO {
     }
 
     /**
-     * Create single user info by user.
-     * @param {string} user
+     * Sign up a new user.
+     * @param {object} user
      */
-    fnCreateUser = (user) => {
+    fnSignUp = (user) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
             const text = 'INSERT INTO users (email, password, roles, is_verified) VALUES($1, $2, $3, $4) RETURNING *';

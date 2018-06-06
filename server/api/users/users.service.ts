@@ -4,15 +4,15 @@ export default class UsersService {
     usersDAO = new UsersDAO();
 
     /**
-     * create a new user.
+     * Sign up a new user.
      * @param {object} req - request object.
      */
-    fnCreateUser = (req) => {
+    fnSignUp = (req) => {
         const userObj = req.body;
         return new Promise((resolve, reject) => {
             if (userObj.email && userObj.password && userObj.roles) {
-                return this.usersDAO
-                    .fnCreateUser(userObj)
+                this.usersDAO
+                    .fnSignUp(userObj)
                     .then(user => resolve(user))
                     .catch(error => {
                         reject(error);
