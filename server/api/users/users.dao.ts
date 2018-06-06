@@ -47,7 +47,7 @@ export default class UsersDAO {
         const db = new DbService();
         return new Promise((resolve, reject) => {
             const text = 'INSERT INTO users (email, password, roles, is_verified) VALUES($1, $2, $3, $4) RETURNING *';
-            const values = [`'${user.email}'`, `'${user.password}'`, `'${user.roles}'`, true];
+            const values = [`${user.email}`, `${user.password}`, `${user.roles}`, true];
             db.query(text, values,
                 (err, res) => {
                     db.end();
