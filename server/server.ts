@@ -85,22 +85,6 @@ app.get('/logs', function (req, res) {
 });
 /*----- END: Logs File Configuration -----*/
 
-/*----- START: Node Process events for get exceptions -----*/
-process
-    .on('unhandledRejection', (reason, p) => {
-        console.error(reason, 'UNHANDLED REJECTION AT PROMISE', p);
-    })
-    .on('rejectionHandled', (p) => {
-        console.error('REJECTION UNHANDLED', p);
-    })
-    .on('uncaughtException', (err) => {
-        console.error('UNCAUGHT EXCEPTION : ', err);
-    })
-    .on('warning', (warning) => {
-        console.error('WARNING : ', warning);
-    });
-/*----- END: Node Process events for get exceptions -----*/
-
 // Set API routing
 fnSetRoutes(app);
 
@@ -116,5 +100,21 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Node server listening on http://localhost:${PORT}`);
 });
+
+/*----- START: Node Process events for get exceptions -----*/
+process
+    .on('unhandledRejection', (reason, p) => {
+        console.error(reason, 'UNHANDLED REJECTION AT PROMISE', p);
+    })
+    .on('rejectionHandled', (p) => {
+        console.error('REJECTION UNHANDLED', p);
+    })
+    .on('uncaughtException', (err) => {
+        console.error('UNCAUGHT EXCEPTION : ', err);
+    })
+    .on('warning', (warning) => {
+        console.error('WARNING : ', warning);
+    });
+/*----- END: Node Process events for get exceptions -----*/
 
 export {app};
