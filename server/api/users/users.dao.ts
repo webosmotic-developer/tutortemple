@@ -1,12 +1,6 @@
 import DbService from '../../services/db.service';
 
 export default class UsersDAO {
-    /**
-     * Sign up a new user.
-     * @param {object} req - request object.
-     */
-    fnSignUp = (req) => {
-    };
 
     /**
      * Get single user info by id.
@@ -16,11 +10,12 @@ export default class UsersDAO {
         const db = new DbService();
         return new Promise((resolve, reject) => {
             db.query('SELECT * FROM users WHERE id = $1', [id], (err, res) => {
+                db.end();
                 if (err) {
                     reject(err);
+                } else {
+                    resolve(res.rows[0]);
                 }
-                db.end();
-                resolve(res.rows[0]);
             });
         });
     };
@@ -43,6 +38,10 @@ export default class UsersDAO {
         });
     }
 
+    /**
+     * Create single user info by user.
+     * @param {string} user
+     */
     fnCreateUser = (user) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
@@ -57,6 +56,24 @@ export default class UsersDAO {
                         resolve(res.rows[0]);
                     }
                 });
+        });
+    }
+
+    /**
+     * Get single user info by facebook id.
+     * @param {string} id
+     */
+    fnGetUserByFacebookId = (id) => {
+        const db = new DbService();
+        return new Promise((resolve, reject) => {
+            db.query('SELECT * FROM users WHERE facebook ->> \'id\' = $1', [id], (err, res) => {
+                db.end();
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(res.rows[0]);
+                }
+            });
         });
     }
 }

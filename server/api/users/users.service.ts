@@ -6,7 +6,6 @@ export default class UsersService {
     /**
      * create a new user.
      * @param {object} req - request object.
-     * @param {object} res - response object.
      */
     fnCreateUser = (req) => {
         const userObj = req.body;
@@ -19,11 +18,12 @@ export default class UsersService {
                         reject(error);
                     });
             } else {
-                reject({message: {
-                    name: 'error',
-                    code: '23505',
-                    detail: 'Missing required field.'
-                }
+                reject({
+                    message: {
+                        name: 'error',
+                        code: '23505',
+                        detail: 'Missing required field.'
+                    }
                 });
             }
         });
