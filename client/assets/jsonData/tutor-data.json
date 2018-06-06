@@ -1,0 +1,433 @@
+ [
+    {
+      "userId": "033dbf0e-1a68-4a84-ad0e-41f6d3fba60c",
+      "firstName": "Paul",
+      "lastName": "Williamson",
+      "city": "Helena",
+      "subjects": [
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 10,
+          "value": "Art",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 12,
+          "value": "Drawing",
+          "categoryId": 3
+        }
+      ],
+      "languages": [
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/United-Kingdom.png",
+          "id": 24,
+          "value": "English",
+          "categoryId": 10
+        }
+      ],
+      "pricePerLesson": 12,
+      "description": "I  have a Masters degree in Art Education.  If you book a lessons with me, what you can expect is a fully prepared lesson from someone who has decades of experience teaching art to all skill levels.  I have had an award winning career as a public school art teacher in which I have helped many students secure art scholarships and careers.  My Skype setup is hardwired for fast non-choppy video, well lit, the sound quality is good, and I have multiple HD cameras so as to make the learning experience as much like we are in the same room as I possibly can.",
+      "reviewsCount": 3
+    },
+    {
+      "userId": "04bed2e3-6254-4ab5-a389-0c9bb763040e",
+      "firstName": "Mladen",
+      "lastName": "Đorđević",
+      "city": "Belgrade",
+      "subjects": [
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 123,
+          "value": "History",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 1011,
+          "value": "Ancient History",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 1588,
+          "value": "European History",
+          "categoryId": 3
+        }
+      ],
+      "languages": [
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/United-Kingdom.png",
+          "id": 24,
+          "value": "English",
+          "categoryId": 10
+        },
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/Montenegro.png",
+          "id": 313,
+          "value": "Serbian",
+          "categoryId": 10
+        }
+      ],
+      "pricePerLesson": 10,
+      "description": "Dedicated teacher and journalist, with 17 years of work experience and passion for education and journalism. Committed to student and school (or company) success. Strong team player with excellent communication skills, willing to learn and to accept challenges. Ambituous, cool-headed, patient and reliable, ready to work into flexibile and multicultural environment.\n",
+      "reviewsCount": 0
+    },
+    {
+      "userId": "0a4f6bb8-578f-4a56-9946-6ac259b77621",
+      "firstName": "Shivani ",
+      "lastName": "Raman",
+      "city": "New York",
+      "subjects": [
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 122,
+          "value": "Geometry",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 130,
+          "value": "K-8 Math",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 137,
+          "value": "Math",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 591,
+          "value": "4-9 Math",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 631,
+          "value": "Basic math skills  ",
+          "categoryId": 3
+        }
+      ],
+      "languages": [
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/United-Kingdom.png",
+          "id": 24,
+          "value": "English",
+          "categoryId": 10
+        },
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/India.png",
+          "id": 299,
+          "value": "Hindi",
+          "categoryId": 10
+        }
+      ],
+      "pricePerLesson": 40,
+      "description": "I have completed Bachelors of Engineering (B.E Electronics and Communication) in India.I worked as a Programmer Analyst in a Software Company and later switched to a Private School as Math and Computer Science teacher because teaching is my passion. I taught Math and Computer Science for elementary and middle school children. I use different teaching methods depending on the academic background like above average students should be given questions based on higher order thinking skills, average students should be given regular practice and for slow learners conduct different activities so that they show interest in subject. I use different teaching methods depending on the concepts also.I feel a good tutor will use a comprehensive, baseline assessment to determine what skills are missing. Then the program should be structured to accomplish two things: teach those skills to your child over time so that the gaps are filled and provide ongoing support so that the child can pass their math class. Since no two children are alike, the plan should be customized to meet the childs exact needs. An effective tutoring program not only teaches the core skills that your child needs, it also has built in assessments that track the childs progress and check for mastery, not just competence. Mastering these key skills means that the child wont get stuck in the math when they start doing higher level problems. A good tutoring program will ultimately help your child master the skills that he needs to continue on his own without extra help. My hobbies are reading books , engage my daughter in different activities like drawing , craft , sports etc",
+      "reviewsCount": 0
+    },
+    {
+      "userId": "164521b7-8a81-4f25-a867-3d79a4d13216",
+      "firstName": "Prabhu",
+      "lastName": "Mohan",
+      "city": "Chennai",
+      "subjects": [
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 85,
+          "value": "Brass Instruments",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 699,
+          "value": "Music",
+          "categoryId": 3
+        }
+      ],
+      "languages": [
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/United-Kingdom.png",
+          "id": 24,
+          "value": "English",
+          "categoryId": 10
+        }
+      ],
+      "pricePerLesson": 30,
+      "description": "Hi ! I am Prabhu, having good experience in teaching Veena Instrument (Indian Classical Music). I completed my degree in veena from Annamalai University. I can take classes from Beginners to all levels. My way of teaching is purely Carnatic and in traditional methods of South  India. I will take classes from basic level to varnams, Kirthis and Carnatic devotional songs. I can train students for stage performance. Learn and Enjoy this Divine Instrument.",
+      "reviewsCount": 0
+    },
+    {
+      "userId": "1bb0358f-32f0-46b7-9292-ffc46b58002f",
+      "firstName": "Davella",
+      "lastName": "Tang",
+      "city": "Auckland",
+      "subjects": [
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 41,
+          "value": "Cantonese",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 65,
+          "value": "Mandarin",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 103,
+          "value": "Hobbies",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 154,
+          "value": "IELTS",
+          "categoryId": 3
+        }
+      ],
+      "languages": [
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/United-Kingdom.png",
+          "id": 24,
+          "value": "English",
+          "categoryId": 10
+        },
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/China.png",
+          "id": 54,
+          "value": "Chinese",
+          "categoryId": 10
+        }
+      ],
+      "pricePerLesson": 10,
+      "description": "Hey there, I am Davella. I am an international student studying Language Teaching and Linguistics at Auckland University. Being passionate about language teaching, I have been a Mandarin tutor for over one year, helping a total of 11 students to improve their language proficiency remarkably. I am a native speaker of both Mandarin and Cantonese, and I am also a good English speaker : ) I have got an IELTS score of 8.0 (Listening 8.0, Reading 8.0, Speaking 7.5, Writing 7.5), I am also working as an IELTS writing teacher at the same time. ",
+      "reviewsCount": 1
+    },
+    {
+      "userId": "1c541ec7-e86a-4723-a5d0-bed580c725f2",
+      "firstName": "Tiff",
+      "lastName": "Ng",
+      "city": "Sydney",
+      "subjects": [
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 120,
+          "value": "English",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 493,
+          "value": "English, English Literature,Literary Theory, Creative Writing",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 589,
+          "value": "Essay Writing",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 785,
+          "value": "Conversational English",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 786,
+          "value": "Writing",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 787,
+          "value": "Social Media",
+          "categoryId": 3
+        }
+      ],
+      "languages": [
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/United-Kingdom.png",
+          "id": 24,
+          "value": "English",
+          "categoryId": 10
+        }
+      ],
+      "pricePerLesson": 30,
+      "description": "I'm a freelance writer and social media marketer from Sydney, Australia. I've always been interested in how we use language and creative formats to tell unique narratives and I'm passionate about empowering others to do so too. ",
+      "reviewsCount": 0
+    },
+    {
+      "userId": "1c8f947c-2e42-40b3-b0da-487b76067086",
+      "firstName": "Tom",
+      "lastName": "Marks",
+      "city": "Adelaide",
+      "subjects": [
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 118,
+          "value": "Computer Science",
+          "categoryId": 3
+        }
+      ],
+      "languages": [
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/United-Kingdom.png",
+          "id": 24,
+          "value": "English",
+          "categoryId": 10
+        }
+      ],
+      "pricePerLesson": 10,
+      "description": "I am currently studying Computer Science at Adelaide Uni, however I have been programming for over 13 years. I have learned from a wide variety of sources, and have been very self motivated in my study - I believe I can help others shape their self-motivated learning. I have also trained as a classical musician, so I am not limited to only thinking as a programmer. I believe that everyone should learn to code, and that I can help people get off to a good start by teaching the things I wish I learned sooner. If you want to learn to not only write code, but also think like a programmer and improve your problem solving ability, then please look at my lessons.",
+      "reviewsCount": 0
+    },
+    {
+      "userId": "1cbac562-8e8b-47ba-be94-3ae61c96a117",
+      "firstName": "Lisa",
+      "lastName": "Phillips",
+      "city": "Albury",
+      "subjects": [
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 120,
+          "value": "English",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 829,
+          "value": "Reading specialist, dyslexia, special education",
+          "categoryId": 3
+        }
+      ],
+      "languages": [
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/United-Kingdom.png",
+          "id": 24,
+          "value": "English",
+          "categoryId": 10
+        }
+      ],
+      "pricePerLesson": 60,
+      "description": "I am a specialist teacher for the area of reading and spelling and specialise in the area of Dyslexia.  I use evidence based methods and strategies and have been working in the area of special needs for over 26 years.  I offer tuition that provides the student with the necessary tools to assist in reading and spelling mastery.  Alongside specialist reading tuition I believe a tutor should offer compassionate and caring mentorship, and see learning as task that is dependant on many successful steps.",
+      "reviewsCount": 0
+    },
+    {
+      "userId": "1cec03b9-343b-466a-ab01-47d3283e2150",
+      "firstName": "AnnLloyd",
+      "lastName": "Hufstader",
+      "city": "Washington",
+      "subjects": [
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 120,
+          "value": "English",
+          "categoryId": 3
+        },
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 1239,
+          "value": "ESL, TOEFL, Academic Research and Writing in English",
+          "categoryId": 3
+        }
+      ],
+      "languages": [
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/United-Kingdom.png",
+          "id": 24,
+          "value": "English",
+          "categoryId": 10
+        },
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/Spain.png",
+          "id": 277,
+          "value": "Spanish",
+          "categoryId": 10
+        }
+      ],
+      "pricePerLesson": 40,
+      "description": "Students describe me as creative, focused and fun. I strongly believe in self-directed learning. My role is to continually assess what the student understands at each phase of the learning process and what the student needs to get to the next level. I am here to listen, track errors, and provide the information that a student needs to automatically self-correct. Take a trial lesson for half price and let's go from there! ",
+      "reviewsCount": 0
+    },
+    {
+      "userId": "210740c7-9e8a-494d-90d8-7a84b5ff10d9",
+      "firstName": "Andrei",
+      "lastName": "Nesterov",
+      "city": "Moscow",
+      "subjects": [
+        {
+          "valueInt": null,
+          "data": null,
+          "id": 72,
+          "value": "Russian",
+          "categoryId": 3
+        }
+      ],
+      "languages": [
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/Russia.png",
+          "id": 23,
+          "value": "Russian",
+          "categoryId": 10
+        },
+        {
+          "valueInt": null,
+          "data": "https://eurekly.com/Content/languages-icon/United-Kingdom.png",
+          "id": 24,
+          "value": "English",
+          "categoryId": 10
+        }
+      ],
+      "pricePerLesson": 15,
+      "description": "I am a Russian linguist and writer, with  over ten years of experience in teaching languages, English and Russian. For two years, I taught Russian in the USA, to students of West Virginia University, also, since 2005, I've been teaching Russian in person and via Skype to people from many different countries: Australia, Great Britain, the USA, France, New Zealand, Denmark and others. I try to identify the learner's needs and proficiency level at the outset, and then I create customized lessons specifically for this learner, using all the resources, including latest Russian and American textbooks, dialogues, tests, etc. ",
+      "reviewsCount": 1
+    }
+  ]

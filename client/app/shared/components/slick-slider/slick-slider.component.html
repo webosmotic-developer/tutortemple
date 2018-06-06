@@ -1,0 +1,9 @@
+<div class="col-sm-12 m-auto">
+  <div class="{{slickid}} " *ngIf="sources">
+    <div *ngFor="let source of sources" class="text-center">
+      <div class="col-12 pt-3">
+        <app-card [data]="source"></app-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+<div class="main-section">
+    <div class="container text-center text-light">
+        <h1 class="mb-2">Time To Learn</h1>
+        <h4 class="mt-2">Online learning is not the next big thing, it is the now big thing.</h4>
+
+        <div class="col-sm-10 col-md-10 col-lg-6 mx-auto">
+            <div class="input-group home-search">
+                <input type="text" class="form-control" placeholder="Teach me something" [typeahead]="categories"
+                       typeaheadOptionField="title" [typeaheadMinLength]="0" [(ngModel)]="search">
+                <span class="input-group-addon bg-primary text-light">
+            <i class="fa fa-search"></i>
+        </span>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-10 col-xl-8 mx-auto d-none d-md-block">
+            <app-home-search></app-home-search>
+        </div>
+    </div>
+</div>
+<div class="container text-center pt-5 pb-5">
+    <h2 class="mb-2">Featured Tutors</h2>
+    <div class="row">
+        <div class="col-12 ml-auto mr-auto">
+            <p class="category">Find the Right Tutor for You</p>
+            <!-- Nav tabs -->
+            <div class="">
+                <ul class="nav nav-tabs justify-content-center" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#home" role="tab"
+                           (click)="selected = 'popular'">
+                            Most Popular
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#profile" role="tab" (click)="selected = 'rated'">
+                            Highest Rated
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#messages" role="tab" (click)="selected = 'newest'">
+                            Newest
+                        </a>
+                    </li>
+                </ul>
+                <div class="card-body pl-0 pr-0">
+                    <!-- Tab panes -->
+                    <div class="tab-content text-center" [hidden]="!tutors">
+                        <div class="tab-pane active" id="home" role="tabpanel">
+                            <app-slick-slider [sources]="tutors" slickid="popular"
+                                              *ngIf="selected === 'popular'"></app-slick-slider>
+                        </div>
+                        <div class="tab-pane" id="profile" role="tabpanel">
+                            <app-slick-slider [sources]="tutors" slickid="Rated"
+                                              *ngIf="selected === 'rated'"></app-slick-slider>
+                        </div>
+                        <div class="tab-pane" id="messages" role="tabpanel">
+                            <app-slick-slider [sources]="tutors" slickid="Newest"
+                                              *ngIf="selected === 'newest'"></app-slick-slider>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" text-light parallax">
+    <div class="para-slide">
+        <div class="container pt-5 pb-5 d-flex justify-content-between flex-column flex-sm-column flex-md-row">
+            <div>
+                <h2 class="mb-2">Want to become a tutor in <strong>Tutor Temple</strong>?</h2>
+                <h6 class="mt-2">
+                    Tutor Temple collaborate professional and talented tutors from all over the world! Join us right
+                    now!
+                </h6>
+            </div>
+            <div>
+                <button class="btn btn-primary btn-round btn-lg" routerLink="/signup">
+                    <i class="fa fa-edit fa-lg"></i> Register now
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container text-center pt-5 pb-5">
+    <h2 class="mb-2">Browse Our Top Subjects</h2>
+    <div class="row">
+        <div class="col-12 ml-auto mr-auto p-0">
+            <p class="category">One just right for you</p>
+            <!-- Nav tabs -->
+            <div class="">
+                <ul class="nav nav-tabs justify-content-center" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#home1" role="tab">
+                            Most Popular
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#profile1" role="tab">
+                            Academic
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#messages1" role="tab">
+                            Languages
+                        </a>
+                    </li>
+                </ul>
+                <div class="card-body pl-0 pr-0">
+                    <!-- Tab panes -->
+                    <div class="tab-content text-center pl-3 pl-sm-0 pr-3 pr-sm-0">
+                        <div class="tab-pane active" id="home1" role="tabpanel">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3"
+                                     *ngFor="let subject of subjects.popular">
+                                    <app-hover-image [data]="subject"></app-hover-image>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="profile1" role="tabpanel">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3"
+                                     *ngFor="let subject of subjects.academic">
+                                    <app-hover-image [data]="subject"></app-hover-image>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="messages1" role="tabpanel">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3"
+                                     *ngFor="let subject of subjects.languages">
+                                    <app-hover-image [data]="subject"></app-hover-image>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a href="javscript:void(0)" class="btn btn-primary btn-round btn-lg">See all the subjects</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

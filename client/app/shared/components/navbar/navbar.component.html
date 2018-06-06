@@ -1,0 +1,89 @@
+<!-- Navbar -->
+<div class="fixed-top header-navbar">
+    <nav class="top-navbar navbar navbar-expand-lg flex-column m-0 pt-0 pb-0 d-none d-lg-block"
+         [ngClass]="hideTransparant ? '' : 'navbar-transparent'" color-on-scroll="400">
+        <div class="container">
+            <div class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/how-it-works">
+                            <p>How it works?</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/signin">
+                            <p>Sign in</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/signup">
+                            <p>Sign up</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg bg-primary flex-column"
+         [ngClass]="hideTransparant ? '' : 'navbar-transparent'" color-on-scroll="400">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" routerLink="/home" rel="tooltip"
+                   title="Designed by Invision. Coded by Creative Tim" data-placement="bottom">
+                    Tutor Temple
+                </a>
+                <button class="navbar-toggler navbar-toggler pull-right p-2" type="button" data-toggle="collapse"
+                        data-target="#navigation"
+                        aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-lg fa-bars text-light"></i>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">
+                            <p>Find a tutor</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">
+                            <p>Become a tutor</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">
+                            <p>Help</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">
+                            <p>About</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/contacts">
+                            <p>Contacts</p>
+                        </a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" routerLink="/how-it-works">
+                            <p>How it work?</p>
+                        </a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" routerLink="/signin">
+                            <p>Sign in</p>
+                        </a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" routerLink="/signup">
+                            <p>Sign up</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- End Navbar -->

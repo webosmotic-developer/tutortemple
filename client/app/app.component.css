@@ -1,0 +1,5 @@
+.main-container {
+    height: calc(100% - 200px);
+    min-height: fit-content;
+    position: relative;
+}

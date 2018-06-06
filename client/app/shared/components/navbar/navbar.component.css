@@ -1,0 +1,24 @@
+    .navbar-brand{
+  font-weight: bold;
+  font-size: 0.98em;
+}
+
+
+.top-navbar{
+  min-height: auto !important;
+  background-color: #003c85;
+}
+
+.top-navbar.navbar .navbar-nav .nav-link:not(.btn){
+  font-size: 0.78em;
+  padding: 0.2rem 0.7rem;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 991px) {
+    .navbar-translate{
+        width: 100%;
+    }
+
+}
+

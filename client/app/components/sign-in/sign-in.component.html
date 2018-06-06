@@ -1,0 +1,97 @@
+<div class="section-signup section-full-screen">
+    <div class="signup-backdrop">
+        <div class="container">
+            <h1 class="text-center "><a routerLink="/home" class="logo text-light">Tutor Temple</a></h1>
+            <div class="header text-center">
+                <h4 class="title text-white">Sign In</h4>
+            </div>
+            <div class="d-flex justify-content-center row">
+                <div class="col-lg-8 col-sm-12 col-md-9 d-lg-inline-flex bg-dark-primary">
+                    <div class="col-lg-6  col-sm-12">
+                        <form class="form" #signInForm="ngForm" role="form">
+                            <div class="card-body mt-4">
+                                <div class="wrapper mt-0">
+                                    <div class="input-group form-group-no-border">
+                                        <div class="input-group-prepend mr-0">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-envelope fa-fw"></i>
+                                        </span>
+                                        </div>
+                                        <input type="text" class="form-control text-white" placeholder="Email..."
+                                               required
+                                               [pattern]="emailRegEx"
+                                               name="email" type="email"
+                                               [(ngModel)]="signInObj.email" #email="ngModel">
+                                    </div>
+
+                                    <div *ngIf="(signInForm.submitted || email.touched) && !email.valid">
+                                    <span class="text-warning" *ngIf="email.errors['required']">
+                                        Email is required
+                                    </span>
+                                        <span class="text-warning" *ngIf="email.errors['pattern']">
+                                        Email is invalid
+                                    </span>
+                                    </div>
+                                </div>
+
+                                <div class="wrapper">
+                                    <div class="input-group form-group-no-border">
+                                        <div class="input-group-prepend mr-0">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-lock fa-fw"></i>
+                                        </span>
+                                        </div>
+                                        <input type="password" placeholder="Password..." class="form-control text-white"
+                                               name="password" [(ngModel)]="signInObj.password"
+                                               #password="ngModel" required
+                                               required [pattern]="passwordRegEx">
+                                    </div>
+
+                                    <div *ngIf="(signInForm.submitted || password.touched) && !password.valid">
+                                    <span class="text-warning" *ngIf="password.errors['required']">
+                                      Password is required
+                                    </span>
+                                        <span class="text-warning" *ngIf="password.errors['pattern']">
+                                        Password is invalid
+                                    </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="footer text-center mt-0">
+                                <button class="btn btn-neutral btn-round" [disabled]="!signInForm.valid"
+                                        (click)="fnCheckAuthentication()">Sign In
+                                </button>
+                            </div>
+                            <!--<div class="text-center pb-3">-->
+                            <!--<a routerLink="/signup" class="text-white">-->
+                            <!--Not a Tutor Temple member?</a>-->
+                            <!--</div>-->
+                        </form>
+                    </div>
+                    <div class="border mt-5 mb-5 d-none d-sm-none d-xs-none d-md-none d-lg-block"></div>
+                    <div class="col-lg-6 mt-lg-5 col-sm-12">
+                        <div class="social-line">
+                            <div class="d-flex justify-content-center mr-auto">
+                                <a href="javscript:void(0)"
+                                   class="btn btn-neutral btn-facebook btn-icon btn-round btn-lg mr-4 ">
+                                    <i class="fa fa-facebook-square fa-lg"></i>
+                                </a>
+                                <a href="javscript:void(0)"
+                                   class="btn btn-neutral btn-google btn-icon btn-round btn-lg">
+                                    <i class="fa fa-google-plus fa-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pb-3 mt-2">
+                <a routerLink="/signup" class="text-white">
+                    Not a Tutor Temple member?</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

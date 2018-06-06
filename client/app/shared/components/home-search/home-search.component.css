@@ -1,0 +1,31 @@
+.search-panel{
+  border: 0;
+  border-radius: 0.1875rem;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  margin-bottom: 20px;
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+  text-shadow: none;
+}
+
+.search-panel .search-label-tag{
+  border-radius: 5px 0 0 5px;
+  background: rgba(0,0,0,0.5);
+  padding: 15px;
+}
+
+.search-panel .search-label-tag:before{
+  content: '';
+  border: 13px solid transparent;
+  border-left: 13px solid;
+  position: absolute;
+  left: 147px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 0;
+  height: 0;
+  color: rgba(0,0,0,0.5);
+}

@@ -1,0 +1,114 @@
+{
+  "popular": [
+    {
+      "title": "Computer Science",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Economics",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Graphic Design",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Writing",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Entrepreneurship",
+      "image": "computer_science.jpg"
+    }
+  ],
+  "academic": [
+    {
+      "title": "Biology",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Chemistry",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Geometry",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "History",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Law",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Literature",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Math",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Physics",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Social Science",
+      "image": "computer_science.jpg"
+    }
+  ],
+  "languages": [
+    {
+      "title": "Arabic",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Chinese",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "English",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "French",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "German",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Hindi",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Italian",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Japanese",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Korean",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Portuguese",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Russian",
+      "image": "computer_science.jpg"
+    },
+    {
+      "title": "Spanish",
+      "image": "computer_science.jpg"
+    }
+  ]
+}
+
+

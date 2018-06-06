@@ -1,0 +1,104 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+}
+
+.slick-next {
+    right: -15px;
+}
+
+.bg-dark-primary {
+    background-color: #003c85;
+}
+
+.bg-ex-dark-primary {
+    background-color: #00254d;
+}
+
+.navbar .navbar-nav .nav-link:not(.btn) {
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.nav-tabs > .nav-item > .nav-link.active {
+    border: 1px solid #007bff;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: #007bff;
+    font-size: 30px;
+}
+
+.input-group-addon {
+    border-left: 0;
+}
+
+.home-search .dropdown-menu, .home-search .dropdown-menu.open {
+    width: 100% !important;
+}
+
+.home-search .dropdown-menu:before {
+    display: none;
+}
+
+.input-group-addon {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-group .form-control + .input-group-addon, .input-group .form-control + .input-group-addon {
+    padding: 10px 18px 10px 18px;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("assets/images/tutorMan.jpg");
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media (min-width: 1366px) {
+    .container {
+        max-width: 1160px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-tabs {
+        display: inline-flex;
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .nav-tabs {
+        display: inline-block;
+        width: 100%;
+         padding-left: 0px;
+         padding-right: 0px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .sidebar-collapse .navbar-collapse{
+        z-index: 1000;
+        overflow: scroll;
+        background: linear-gradient(#007bff 0%, #000 80%) !important;
+        opacity: 0.9;
+    }
+
+    .sidebar-collapse .navbar-collapse:before{
+        background: transparent;
+    }
+}
+
+

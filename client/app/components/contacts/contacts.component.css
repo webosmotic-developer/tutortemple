@@ -1,0 +1,64 @@
+.container {
+    padding-top: 120px;
+    padding-bottom: 20px;
+}
+
+.input-group-text {
+    border-radius: 50%;
+    border: none;
+    color: white
+}
+
+.input-group-text:focus {
+    box-shadow: none;
+    outline: 0 !important;
+    color: #2c2c2c;
+}
+
+textarea {
+    background-color: rgba(222, 222, 222, 0.3);
+    border: none;
+}
+
+textarea.form-control:focus {
+    border-bottom: 1px solid #003c85;
+    box-shadow: none;
+    outline: 0 !important;
+    color: #2c2c2c;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #c8c8c8;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    color: #c8c8c8;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+    color: #c8c8c8;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #c8c8c8;
+}
+
+input {
+    /*background-color: #486da0 !important;*/
+}
+
+.send-button {
+    color: #003c85;
+}
+
+.contacts {
+    padding-top: 50px;
+}
+
+.contact-email, .contact-social, .contact-phone {
+    padding: 15px;
+}
+
+.contact-label {
+    color: gray;
+}

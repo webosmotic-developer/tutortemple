@@ -1,0 +1,161 @@
+<div class="section-signup section-full-screen text-white">
+    <div class="signup-backdrop">
+        <div class="container">
+            <h1 class="text-center">
+                <a routerLink="/home" class="logo text-light">Tutor Temple</a>
+            </h1>
+            <div class="header text-center">
+                <h4 class="title text-white">Sign Up</h4>
+            </div>
+            <div class="d-flex justify-content-center row">
+                <div class="col-lg-8 col-sm-12 col-md-9 d-lg-inline-flex bg-dark-primary">
+                    <div class="col-lg-6  col-sm-12">
+                        <form class="form " #signUpForm="ngForm" role="form"
+                              (ngSubmit)="signUpForm.valid">
+                            <div class="card-body">
+                                <div class="mb-2 radio-group">
+                                    <div class="radio">
+                                        <input type="radio" name="radio1" id="radio1" value="option1" checked="">
+                                        <label for="radio1">
+                                            I am a Student
+                                        </label>
+                                    </div>
+
+                                    <div class="radio ml-1">
+                                        <input type="radio" name="radio1" id="radio2" value="option2"
+                                               class="text-primary">
+                                        <label for="radio2">
+                                            I am a Teacher
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="wrapper mt-0">
+                                    <div class="input-group form-group-no-border">
+                                        <div class="input-group-prepend mr-0">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-envelope fa-fw"></i>
+                                        </span>
+                                        </div>
+                                        <input type="text" class="form-control text-white" placeholder="Email..."
+                                               required
+                                               [pattern]="emailRegEx"
+                                               name="email" type="email"
+                                               [(ngModel)]="signUpObj.email" #email="ngModel">
+                                    </div>
+
+                                    <div *ngIf="(signUpForm.submitted || email.touched) && !email.valid">
+                                    <span class="text-warning" *ngIf="email.errors['required']">
+                                        Email is required
+                                    </span>
+                                        <span class="text-warning" *ngIf="email.errors['pattern']">
+                                        Email is invalid
+                                    </span>
+                                    </div>
+                                </div>
+
+                                <div class="wrapper">
+                                    <div class="input-group form-group-no-border">
+                                        <div class="input-group-prepend mr-0">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-lock fa-fw"></i>
+                                        </span>
+                                        </div>
+                                        <input type="password" placeholder="Password..."
+                                               class="form-control text-white"
+                                               name="password" [(ngModel)]="signUpObj.password" (focus)="toltip=true"
+                                               (focusout)="toltip=false"
+                                               #password="ngModel" required (ngModelChange)="fnValidatePassword()"
+                                               required [pattern]="passwordRegEx"/>
+                                    </div>
+                                    <div *ngIf="(signUpForm.submitted || password.touched) && !password.valid">
+                                    <span class="text-warning" *ngIf="password.errors['required']">
+                                        Password is required
+                                    </span>
+                                        <span class="text-warning" *ngIf="password.errors['pattern']">
+                                        Password is invalid
+                                    </span>
+                                    </div>
+                                </div>
+
+                                <div class="wrapper">
+                                    <div class="input-group form-group-no-border">
+                                        <div class="input-group-prepend mr-0">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-lock fa-fw"></i>
+                                        </span>
+                                        </div>
+                                        <input type="password" class="form-control"
+                                               placeholder="Confirm Password..."
+                                               (ngModelChange)="fnValidatePassword()"
+                                               name="cfPassword" [(ngModel)]="signUpObj.cfPassword"
+                                               #cfPassword="ngModel"
+                                               required>
+                                    </div>
+
+                                    <div *ngIf="(signUpForm.submitted || cfPassword.touched) && !cfPassword.valid">
+                                    <span class="text-warning" *ngIf="cfPassword.errors['required']">
+                                        Password is required
+                                    </span>
+                                        <span class="text-warning" *ngIf="cfPassword.errors['pattern']">
+                                        Password should be at least 8 characters long
+                                    </span>
+                                    </div>
+                                    <span class="text-warning" *ngIf="!isPasswordMatching && cfPassword.dirty">
+                                    Passwords do not match
+                                </span>
+                                </div>
+                            </div>
+                            <div class="pt-4 pb-2 text-center mt-0">
+                                <button class="btn btn-neutral btn-round shadow"
+                                   [disabled]="!signUpForm.valid"  (click)="fnSignUp()">
+                                    SignUp
+                                </button>
+                            </div>
+                            <!--<div class="text-center pb-3">-->
+                            <!--<a routerLink="/signin" class="text-white">-->
+                            <!--Already a Tutor Temple member?-->
+                            <!--</a>-->
+                            <!--</div>-->
+                        </form>
+                    </div>
+                    <div class="border mt-5 mb-5 d-none d-sm-none d-xs-none d-md-none d-lg-block"></div>
+                    <div class="col-lg-6 mt-lg-5 col-sm-12">
+                        <div class="social-line">
+                            <div class="d-flex justify-content-center mr-auto">
+                                <a href="javscript:void(0)"
+                                   class="btn btn-neutral btn-facebook btn-icon btn-round btn-lg mr-4 ">
+                                    <i class="fa fa-facebook-square fa-lg"></i>
+                                </a>
+                                <a href="javscript:void(0)"
+                                   class="btn btn-neutral btn-google btn-icon btn-round btn-lg">
+                                    <i class="fa fa-google-plus fa-lg"></i>
+                                </a>
+                            </div>
+                            <div class="mt-4 p-3" *ngIf="toltip">
+                                <p class="d-block mr-0 p-0 mb-0 font-weight-bold">Password needs to</p>
+                                <ul class="mt-0 pr-2 pl-2 list-unstyled">
+                                    <li> be at Least 6 symbols long.</li>
+                                    <li> contain one lower case letter and one upper case letter.</li>
+                                    <li> include at least one number.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pb-3 mt-2">
+                <p><span>By creating an account, you agree to </span> <a href="javscript:void(0)"
+                                                                         class="font-weight-bold">Tutor
+                    Tample </a><span>and </span><a href="javscript:void(0)" class="font-weight-bold"> Privacy
+                    Policy.</a></p>
+                <p><a routerLink="/signin" class="text-white">
+                    Already a Tutor Temple member?
+                </a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

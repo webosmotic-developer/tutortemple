@@ -1,0 +1,5 @@
+<app-navbar [hidden]="hideHeader"></app-navbar>
+<div [ngClass]="{'main-container': !hideFooter}">
+    <router-outlet></router-outlet>
+</div>
+<app-footer [hidden]="hideFooter"></app-footer>

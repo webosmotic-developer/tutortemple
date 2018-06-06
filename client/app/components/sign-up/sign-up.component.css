@@ -1,0 +1,64 @@
+.input-group-text {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border: none;
+    color: white
+}
+
+.section-signup {
+    padding-top: 0;
+    background-image: url("../../../assets/images/slide3.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed !important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: fit-content;
+}
+
+.signup-backdrop {
+    padding-top: 20px;
+    height: 100%;
+    min-height: fit-content;
+}
+
+.logo, .logo:hover {
+    color: #fff !important;
+    text-decoration: none;
+    text-shadow: 2px 1px 2px rgb(0, 0, 0);
+}
+
+.card-signup .header {
+    padding: 0 0 30px 0;
+}
+
+.wrapper {
+    height: 44px;
+    margin-top: 20px;
+}
+
+.input-group, .form-group {
+    margin-bottom: 0;
+}
+
+.radio input[type="radio"]:checked + label::after {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    width: 10px;
+    height: 10px;
+    top: 8px;
+    left: 8px;
+}
+
+.radio label::before, .radio label::after {
+    border: 2px solid #ffffff;
+}
+
+.radio-group {
+    display: flex;
+}
+
+.radio-group .radio {
+    flex: 1;
+}

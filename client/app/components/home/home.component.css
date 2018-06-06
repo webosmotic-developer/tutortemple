@@ -1,0 +1,24 @@
+.main-section{
+  background-image: url("../../../assets/images/slide3.jpg");
+  background-size: cover;
+}
+
+.main-section .container{
+  text-shadow: 2px 1px 2px rgb(0, 0, 0);
+  padding-top: 150px;
+  height: 550px;
+ }
+
+
+.main-section .form-control{
+  color: #fff;
+}
+
+.main-section .form-control:focus {
+  color: #fff;
+  background-color: rgba(138, 191, 255, 0.6);
+}
+
+.para-slide{
+  background: rgba(0,0,0,0.6);
+}
