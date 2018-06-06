@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Constant} from '../../shared/constant';
 import {SignupService} from '../../shared/services/signup-service/signup.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 
 interface SignUp {
-  email: string;
-  password: string;
-  cfPassword: string;
+    email: string;
+    password: string;
+    cfPassword: string;
 }
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+    selector: 'app-sign-up',
+    templateUrl: './sign-up.component.html',
+    styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
     signUpObj: SignUp;
@@ -31,8 +31,8 @@ export class SignUpComponent implements OnInit {
         };
     }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 
     // Check if password and confirm password match
@@ -53,5 +53,9 @@ export class SignUpComponent implements OnInit {
             this._router.navigate(['signup']);
             this.toastr.error('registered Not successfully!', 'Error!');
         }
+    }
+
+    fnSignInOauth = (provider) => {
+        window.location.href = '/api/auth/' + provider;
     }
 }

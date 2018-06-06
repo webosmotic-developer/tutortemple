@@ -38,4 +38,8 @@ export class SignInComponent implements OnInit {
             this.toastr.error('Email and password invalid!', 'Error!');
         }
     }
+
+    fnSignInOauth = (provider) => {
+        window.location.href = '/api/auth/' + provider;
+    }
 }
