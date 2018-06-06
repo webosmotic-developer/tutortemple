@@ -1,4 +1,5 @@
 import DbService from '../../services/db.service';
+import Common from '../../services/utils/common';
 
 export default class UsersDAO {
 
@@ -14,7 +15,16 @@ export default class UsersDAO {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(res.rows[0]);
+                    if (res.rows.length > 0) {
+                        resolve(res.rows[0]);
+                    } else {
+                        reject({
+                            message: {
+                                name: 'error',
+                                detail: 'User doesn\'t exist',
+                            }
+                        });
+                    }
                 }
             });
         });
@@ -74,6 +84,37 @@ export default class UsersDAO {
                     resolve(res.rows[0]);
                 }
             });
+        });
+    }
+
+    /**
+     * Update existing user.
+     * @param {string} userId - request object.
+     * @param {object} user - request object.
+     */
+    fnUpdateUser = (userId, user) => {
+        const db = new DbService();
+        const common = new Common();
+        return new Promise((resolve, reject) => {
+            const {text, values } = common.generateUpdateQuery(userId, user, 'users');
+            db.query(text, values,
+                (err, res) => {
+                    db.end();
+                    if (err) {
+                        reject(err);
+                    } else if (res) {
+                        if (res.rows.length > 0) {
+                            resolve(res.rows[0]);
+                        } else {
+                            reject({
+                                message: {
+                                    name: 'error',
+                                    detail: 'User doesn\'t exist',
+                                }
+                            });
+                        }
+                    }
+                });
         });
     }
 }
