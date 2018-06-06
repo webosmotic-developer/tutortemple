@@ -1,7 +1,7 @@
-import UsersDAO from './users.dao';
+import UsersService from './users.service';
 
 export default class UsersController {
-    usersDAO = new UsersDAO();
+    usersService = new UsersService();
 
     /**
      * Sign up a new user.
@@ -17,4 +17,14 @@ export default class UsersController {
                 res.status(422).json({message: error});
             });*/
     };
+
+    fnCreateUser = (req, res) => {
+        this.usersService
+            .fnCreateUser(req)
+            .then(user => res.status(201).json(user))
+            .catch(error => {
+                console.error('UsersController:fnCreateUser ', error);
+                res.status(422).json({message: error});
+            });
+    }
 }
