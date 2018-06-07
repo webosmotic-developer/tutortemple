@@ -117,4 +117,53 @@ export default class UsersDAO {
                 });
         });
     }
+
+    /**
+     * Delete user.
+     * @param {string} userId - request object.
+     */
+    fnDeleteUser = (userId) => {
+        const db = new DbService();
+        return new Promise((resolve, reject) => {
+            db.query('Delete from users where id = $1 Returning *', [userId],
+                (err, res) => {
+                    db.end();
+                    if (err) {
+                        reject(err);
+                    } else if (res) {
+                        if (res.rows.length > 0) {
+                            resolve(res.rows[0]);
+                        } else {
+                            reject({
+                                message: {
+                                    name: 'error',
+                                    detail: 'User doesn\'t exist',
+                                }
+                            });
+                        }
+                    }
+                });
+        });
+    }
+
+    /**
+     * Get all users.
+     */
+    fnGetUsers = () => {
+        const db = new DbService();
+        return new Promise((resolve, reject) => {
+            db.query('SELECT * FROM users', null, (err, res) => {
+                db.end();
+                if (err) {
+                    reject(err);
+                } else {
+                    if (res.rows.length > 0) {
+                        resolve(res.rows);
+                    } else {
+                        resolve([]);
+                    }
+                }
+            });
+        });
+    }
 }

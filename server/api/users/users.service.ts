@@ -61,4 +61,34 @@ export default class UsersService {
                 });
         });
     }
+
+    /**
+     * Delete user.
+     * @param {object} req - request object.
+     */
+    fnDeleteUser = (req) => {
+        const userId = req.params.id;
+        return new Promise((resolve, reject) => {
+            this.usersDAO
+                .fnDeleteUser(userId)
+                .then(user => resolve(user))
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
+
+    /**
+     * Get all users
+     */
+    fnGetUsers = () => {
+        return new Promise((resolve, reject) => {
+            this.usersDAO
+                .fnGetUsers()
+                .then(users => resolve(users))
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
 }

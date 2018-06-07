@@ -15,7 +15,7 @@ export default function fnLocal(req, res, next) {
             console.error('LocalAuth:fnLocal() => passport.authenticate()', 'Something went wrong, please try again.');
             return res.status(404).json({message: 'Something went wrong, please try again.'});
         }
-        const token = auth.fnSignToken(user._id);
+        const token = auth.fnSignToken(user.id);
         const fullName = '';
         const filterUser = _.pick(user, _.keys({
             id: null,
