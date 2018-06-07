@@ -17,9 +17,9 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
                 .then((user) => {
                     console.log('profile ++++++++++++++++++', profile);
                     if (!user) {
-                        done(user);
+                        done(null, user);
                     } else {
-                        return done(user);
+                        return done(null, user);
                     }
                 })
                 .catch((err) => {
