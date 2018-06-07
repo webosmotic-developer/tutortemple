@@ -54,7 +54,7 @@ export class SignUpComponent implements OnInit {
             roles: this.signUpObj.roles
         };
         if (signUpObj) {
-            this.authService.fnSignUp(this.signUpObj).then(() => {
+            this.authService.fnSignUp(signUpObj).then(() => {
                 this.router.navigate(['signin']);
                 this.toastr.success(' User has been registered successfully!', 'Success!');
             }).catch((error: any) => {
@@ -65,5 +65,9 @@ export class SignUpComponent implements OnInit {
             });
         }
 
+    }
+
+    fnSignInOauth = (provider) => {
+        window.location.href = '/api/auth/' + provider;
     }
 }
