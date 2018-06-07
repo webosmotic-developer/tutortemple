@@ -34,23 +34,23 @@ export default class DbService {
      */
     fnBuildInsertQuery = (tableName, object) => {
         // Remove id property if available because it's auto increment not needed.
-        if (cols.hasOwnProperty('id')) {
-            delete cols.id;
+        if (object.hasOwnProperty('id')) {
+            delete object.id;
         }
         // Setup static beginning of query
         const query = ['INSERT INTO ' + tableName];
-        query.push('(' + Object.keys(cols).join(', ') + ') VALUES');
+        query.push('(' + Object.keys(object).join(', ') + ') VALUES');
         // Create another array storing each set command
         // and assigning a number value for parameterized query
         const set = [];
-        Object.keys(cols).forEach((key, i) => {
+        Object.keys(object).forEach((key, i) => {
             set.push('$' + (i + 1));
         });
         query.push('(' + set.join(', ') + ') RETURNING *');
 
         // Turn req.body into an array of values
-        const values = Object.keys(cols).map((key) => {
-            return cols[key];
+        const values = Object.keys(object).map((key) => {
+            return object[key];
         });
 
         // Return a complete query string
@@ -65,8 +65,8 @@ export default class DbService {
      */
     fnBuildUpdateQuery = (tableName, id, object) => {
         // Remove id property if available because update not needed for id.
-        if (cols.hasOwnProperty('id')) {
-            delete cols.id;
+        if (object.hasOwnProperty('id')) {
+            delete object.id;
         }
         // Setup static beginning of query
         const query = ['UPDATE ' + tableName];
@@ -75,7 +75,7 @@ export default class DbService {
         // Create another array storing each set command
         // and assigning a number value for parameterized query
         const set = [];
-        Object.keys(cols).forEach((key, i) => {
+        Object.keys(object).forEach((key, i) => {
             set.push(key + ' = ($' + (i + 1) + ')');
         });
         query.push(set.join(', '));
@@ -84,8 +84,8 @@ export default class DbService {
         query.push('WHERE id = ' + id + ' RETURNING *');
 
         // Turn req.body into an array of values
-        const values = Object.keys(cols).map((key) => {
-            return cols[key];
+        const values = Object.keys(object).map((key) => {
+            return object[key];
         });
 
         // Return a complete query string
@@ -93,7 +93,7 @@ export default class DbService {
     }
 
     /**
-     * Build find records query using pagination and sorting.
+     * Build find records query using pagination and sorting. It is not support join
      * @param {string} tableName - database table name.
      * @param {object} filters - filters object have following property:
      * cols - It is table columns name array for getting specific column data.
