@@ -9,23 +9,24 @@
             </div>
             <div class="d-flex justify-content-center row">
                 <div class="col-lg-8 col-sm-12 col-md-9 d-lg-inline-flex bg-dark-primary">
-                    <div class="col-lg-6  col-sm-12">
+                   <div class="col-lg-6  col-sm-12">
                         <form class="form " #signUpForm="ngForm" role="form"
-                              (ngSubmit)="signUpForm.valid">
+                              (ngSubmit)="signUpForm.valid && fnSignUp()">
                             <div class="card-body">
-                                <div class="mb-2 radio-group">
+                                <div class="mb-2 radio-group">a
                                     <div class="radio">
-                                        <input type="radio" name="radio1" id="radio1" value="option1" checked="">
-                                        <label for="radio1">
+                                        <input type="radio" name="radio1" id="student"  checked=""
+                                               value="STUDENT" [(ngModel)]="signUpObj && signUpObj.roles">
+                                        <label for="student">
                                             I am a Student
                                         </label>
                                     </div>
 
                                     <div class="radio ml-1">
-                                        <input type="radio" name="radio1" id="radio2" value="option2"
-                                               class="text-primary">
-                                        <label for="radio2">
-                                            I am a Teacher
+                                        <input type="radio" name="radio1" id="teacher"
+                                               class="text-primary"  value="TEACHER" [(ngModel)]="signUpObj && signUpObj.roles">
+                                        <label for="teacher">
+                                               I am a Teacher
                                         </label>
                                     </div>
                                 </div>
@@ -62,8 +63,8 @@
                                         </div>
                                         <input type="password" placeholder="Password..."
                                                class="form-control text-white"
-                                               name="password" [(ngModel)]="signUpObj.password" (focus)="toltip=true"
-                                               (focusout)="toltip=false"
+                                               name="password" [(ngModel)]="signUpObj.password" (focus)="tooltip=true"
+                                               (focusout)="tooltip=false"
                                                #password="ngModel" required (ngModelChange)="fnValidatePassword()"
                                                required [pattern]="passwordRegEx"/>
                                     </div>
@@ -84,12 +85,11 @@
                                             <i class="fa fa-lock fa-fw"></i>
                                         </span>
                                         </div>
-                                        <input type="password" class="form-control"
+                                        <input type="password" class="form-control text-white"
                                                placeholder="Confirm Password..."
-                                               (ngModelChange)="fnValidatePassword()"
                                                name="cfPassword" [(ngModel)]="signUpObj.cfPassword"
                                                #cfPassword="ngModel"
-                                               required>
+                                               required [pattern]="passwordRegEx" (ngModelChange)="fnValidatePassword()">
                                     </div>
 
                                     <div *ngIf="(signUpForm.submitted || cfPassword.touched) && !cfPassword.valid">
@@ -97,7 +97,7 @@
                                         Password is required
                                     </span>
                                         <span class="text-warning" *ngIf="cfPassword.errors['pattern']">
-                                        Password should be at least 8 characters long
+                                        Password is invalid
                                     </span>
                                     </div>
                                     <span class="text-warning" *ngIf="!isPasswordMatching && cfPassword.dirty">
@@ -106,23 +106,18 @@
                                 </div>
                             </div>
                             <div class="pt-4 pb-2 text-center mt-0">
-                                <button class="btn btn-neutral btn-round shadow"
-                                   [disabled]="!signUpForm.valid"  (click)="fnSignUp()">
+                                <button class="btn btn-neutral btn-round shadow" type="submit"
+                                   [disabled]="!signUpForm.valid">
                                     SignUp
                                 </button>
                             </div>
-                            <!--<div class="text-center pb-3">-->
-                            <!--<a routerLink="/signin" class="text-white">-->
-                            <!--Already a Tutor Temple member?-->
-                            <!--</a>-->
-                            <!--</div>-->
                         </form>
                     </div>
                     <div class="border mt-5 mb-5 d-none d-sm-none d-xs-none d-md-none d-lg-block"></div>
                     <div class="col-lg-6 mt-lg-5 col-sm-12">
                         <div class="social-line">
                             <div class="d-flex justify-content-center mr-auto">
-                                <a href="javascript:void(0)" (click)="fnSignInOauth('facebook')"
+                                <a href="javascript:void(0)"
                                    class="btn btn-neutral btn-facebook btn-icon btn-round btn-lg mr-4 ">
                                     <i class="fa fa-facebook-square fa-lg"></i>
                                 </a>
@@ -131,10 +126,10 @@
                                     <i class="fa fa-google-plus fa-lg"></i>
                                 </a>
                             </div>
-                            <div class="mt-4 p-3" *ngIf="toltip">
+                            <div class="mt-4 p-3" *ngIf="tooltip">
                                 <p class="d-block mr-0 p-0 mb-0 font-weight-bold">Password needs to</p>
                                 <ul class="mt-0 pr-2 pl-2 list-unstyled">
-                                    <li> be at Least 6 symbols long.</li>
+                                    <li> be at least 6 symbols long.</li>
                                     <li> contain one lower case letter and one upper case letter.</li>
                                     <li> include at least one number.</li>
                                 </ul>

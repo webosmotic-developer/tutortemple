@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Constant} from '../../shared/constant';
-import {SignupService} from '../../shared/services/signup-service/signup.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {AuthService} from '../../shared/services/auth-service/auth.service';
 
 interface SignUp {
     email: string;
     password: string;
+    roles: string;
     cfPassword: string;
 }
 
@@ -20,13 +21,14 @@ export class SignUpComponent implements OnInit {
     public emailRegEx: any = Constant.EMAIL_REG_EX;
     public passwordRegEx: any = Constant.PASSWORD_REG_EX;
     isPasswordMatching: boolean;
-    public toltip: boolean;
+    public tooltip: boolean;
 
 
-    constructor(private signUpService: SignupService, private _router: Router, private toastr: ToastrService) {
+    constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {
         this.signUpObj = {
             'email': '',
             'password': '',
+            'roles': '',
             'cfPassword': '',
         };
     }
@@ -44,18 +46,24 @@ export class SignUpComponent implements OnInit {
         }
     }
 
-    // registered new tutor user
+    // register new  user
     fnSignUp() {
-        if (this.signUpService.registerUser(this.signUpObj)) {
-            this._router.navigate(['signin']);
-            this.toastr.success('registered successfully!', 'Success!');
-        } else {
-            this._router.navigate(['signup']);
-            this.toastr.error('registered Not successfully!', 'Error!');
+        const signUpObj = {
+            email: this.signUpObj.email,
+            password: this.signUpObj.password,
+            roles: this.signUpObj.roles
+        };
+        if (signUpObj) {
+            this.authService.fnSignUp(this.signUpObj).then(() => {
+                this.router.navigate(['signin']);
+                this.toastr.success(' User has been registered successfully!', 'Success!');
+            }).catch((error: any) => {
+                if (error) {
+                    this.router.navigate(['signup']);
+                    this.toastr.error('Something went wrong. Please try again', 'Error!');
+                }
+            });
         }
-    }
 
-    fnSignInOauth = (provider) => {
-        window.location.href = '/api/auth/' + provider;
     }
 }
