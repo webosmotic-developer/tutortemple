@@ -4,6 +4,32 @@ export default class UsersService {
     usersDAO = new UsersDAO();
 
     /**
+     * Get all users
+     */
+    fnGetUsers = () => {
+        return new Promise((resolve, reject) => {
+            this.usersDAO
+                .fnGetUsers()
+                .then(users => resolve(users))
+                .catch((error) => reject(error));
+        });
+    };
+
+    /**
+     * Get single user info by id.
+     * @param {object} req - request object
+     */
+    fnGetUserById = (req) => {
+        const userId = req.params.id;
+        return new Promise((resolve, reject) => {
+            this.usersDAO
+                .fnGetUserById(userId)
+                .then(user => resolve(user))
+                .catch((error) => reject(error));
+        });
+    };
+
+    /**
      * Sign up a new user.
      * @param {object} req - request object.
      */
@@ -12,7 +38,7 @@ export default class UsersService {
         return new Promise((resolve, reject) => {
             if (userObj.email && userObj.password && userObj.roles) {
                 this.usersDAO
-                    .fnSignUp(userObj)
+                    .fnInsert(userObj)
                     .then(user => resolve(user))
                     .catch(error => {
                         reject(error);
@@ -27,23 +53,21 @@ export default class UsersService {
                 });
             }
         });
-    }
+    };
 
     /**
-     * Get single user info by id.
-     * @param {number} id
+     * Insert a new user.
+     * @param {object} req - request object.
      */
-    fnGetUserById = (req) => {
-        const userId = req.params.id;
+    fnCreateUser = (req) => {
+        const userObj = req.body;
         return new Promise((resolve, reject) => {
             this.usersDAO
-                .fnGetUserById(userId)
+                .fnInsert(userObj)
                 .then(user => resolve(user))
-                .catch(error => {
-                    reject(error);
-                });
+                .catch((error) => reject(error));
         });
-    }
+    };
 
     /**
      * Update existing user.
@@ -56,11 +80,9 @@ export default class UsersService {
             this.usersDAO
                 .fnUpdateUser(userId, userObj)
                 .then(user => resolve(user))
-                .catch(error => {
-                    reject(error);
-                });
+                .catch((error) => reject(error));
         });
-    }
+    };
 
     /**
      * Delete user.
@@ -72,23 +94,7 @@ export default class UsersService {
             this.usersDAO
                 .fnDeleteUser(userId)
                 .then(user => resolve(user))
-                .catch(error => {
-                    reject(error);
-                });
+                .catch((error) => reject(error));
         });
-    }
-
-    /**
-     * Get all users
-     */
-    fnGetUsers = () => {
-        return new Promise((resolve, reject) => {
-            this.usersDAO
-                .fnGetUsers()
-                .then(users => resolve(users))
-                .catch(error => {
-                    reject(error);
-                });
-        });
-    }
+    };
 }

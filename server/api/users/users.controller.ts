@@ -4,19 +4,19 @@ export default class UsersController {
     usersService = new UsersService();
 
     /**
-     * Sign up a new user.
+     * Get all users
      * @param {object} req - request object.
      * @param {object} res - response object.
      */
-    fnSignUp = (req, res) => {
+    fnGetUsers = (req, res) => {
         this.usersService
-            .fnSignUp(req)
-            .then(user => res.status(201).json(user))
+            .fnGetUsers()
+            .then(users => res.status(200).json(users))
             .catch(error => {
-                console.error('UsersController:fnSignUp ', error);
-                res.status(422).json({message: error});
+                console.error('UsersController:fnGetUsers', error);
+                res.status(400).json({message: error});
             });
-    }
+    };
 
     /**
      * Get a user.
@@ -29,6 +29,36 @@ export default class UsersController {
             .then(user => res.status(201).json(user))
             .catch(error => {
                 console.error('UsersController:fnGetUserById ', error);
+                res.status(422).json({message: error});
+            });
+    };
+
+    /**
+     * Sign up a new user.
+     * @param {object} req - request object.
+     * @param {object} res - response object.
+     */
+    fnSignUp = (req, res) => {
+        this.usersService
+            .fnSignUp(req)
+            .then(user => res.status(201).json(user))
+            .catch(error => {
+                console.error('UsersController:fnSignUp ', error);
+                res.status(422).json({message: error});
+            });
+    };
+
+    /**
+     * insert a new user.
+     * @param {object} req - request object.
+     * @param {object} res - response object.
+     */
+    fnCreateUser = (req, res) => {
+        this.usersService
+            .fnCreateUser(req)
+            .then(user => res.status(201).json(user))
+            .catch(error => {
+                console.error('UsersController:fnSignUp ', error);
                 res.status(422).json({message: error});
             });
     }
@@ -59,21 +89,6 @@ export default class UsersController {
             .then(user => res.status(200).json(user))
             .catch(error => {
                 console.error('UsersController:fnDeleteUser', error);
-                res.status(400).json({message: error});
-            });
-    }
-
-    /**
-     * Get all users
-     * @param {object} req - request object.
-     * @param {object} res - response object.
-     */
-    fnGetUsers = (req, res) => {
-        this.usersService
-            .fnGetUsers()
-            .then(users => res.status(200).json(users))
-            .catch(error => {
-                console.error('UsersController:fnGetUsers', error);
                 res.status(400).json({message: error});
             });
     }

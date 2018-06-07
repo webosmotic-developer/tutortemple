@@ -7,7 +7,9 @@ export default function fnUsersRoutes(router) {
     const auth = new Auth();
 
     router.route('/sign-up').post(usersCtrl.fnSignUp);
-    router.route('/user').get(auth.fnIsAuthenticated(), usersCtrl.fnGetUsers);
+    router.route('/user')
+        .get(auth.fnIsAuthenticated(), usersCtrl.fnGetUsers)
+        .post(auth.fnIsAuthenticated(), usersCtrl.fnCreateUser);
     router.route('/user/:id')
         .get(auth.fnIsAuthenticated(), usersCtrl.fnGetUserById)
         .put(auth.fnIsAuthenticated(), usersCtrl.fnUpdateUser)
