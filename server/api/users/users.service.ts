@@ -28,4 +28,37 @@ export default class UsersService {
             }
         });
     }
+
+    /**
+     * Get single user info by id.
+     * @param {number} id
+     */
+    fnGetUserById = (req) => {
+        const userId = req.params.id;
+        return new Promise((resolve, reject) => {
+            this.usersDAO
+                .fnGetUserById(userId)
+                .then(user => resolve(user))
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
+
+    /**
+     * Update existing user.
+     * @param {object} req - request object.
+     */
+    fnUpdateUser = (req) => {
+        const userId = req.params.id;
+        const userObj = req.body;
+        return new Promise((resolve, reject) => {
+            this.usersDAO
+                .fnUpdateUser(userId, userObj)
+                .then(user => resolve(user))
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
 }
