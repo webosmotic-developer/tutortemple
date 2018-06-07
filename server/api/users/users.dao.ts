@@ -3,13 +3,36 @@ import DbService from '../../services/db.service';
 export default class UsersDAO {
 
     /**
+     * Get all users.
+     */
+    fnGetUsers = () => {
+        const db = new DbService();
+        return new Promise((resolve, reject) => {
+            const {text} = db.fnBuildFindQuery('users');
+            db.query(text, null, (err, res) => {
+                db.end();
+                if (err) {
+                    reject(err);
+                } else {
+                    if (res.rows.length > 0) {
+                        resolve(res.rows);
+                    } else {
+                        resolve([]);
+                    }
+                }
+            });
+        });
+    }
+
+    /**
      * Get single user info by id.
      * @param {number} id
      */
     fnGetUserById = (id: number) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM users WHERE id = $1', [id], (err, res) => {
+            const {text, values} = db.fnBuildFindOneQuery('users', {where: {id: id}});
+            db.query(text, values, (err, res) => {
                 db.end();
                 if (err) {
                     reject(err);
@@ -36,7 +59,8 @@ export default class UsersDAO {
     fnGetUserByEmail = (email: string) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM users WHERE email = $1', [email], (err, res) => {
+            const {text, values} = db.fnBuildFindOneQuery('users', {where: {email: email}});
+            db.query(text, values, (err, res) => {
                 db.end();
                 if (err) {
                     reject(err);
@@ -44,26 +68,6 @@ export default class UsersDAO {
                     resolve(res.rows[0]);
                 }
             });
-        });
-    }
-
-    /**
-     * Sign up a new user.
-     * @param {object} user
-     */
-    fnSignUp = (user: object) => {
-        const db = new DbService();
-        return new Promise((resolve, reject) => {
-            const {text, values} = db.fnBuildInsertQuery('users', user);
-            db.query(text, values,
-                (err, res) => {
-                    db.end();
-                    if (err) {
-                        reject(err);
-                    } else if (res) {
-                        resolve(res.rows[0]);
-                    }
-                });
         });
     }
 
@@ -86,11 +90,31 @@ export default class UsersDAO {
     }
 
     /**
+     * Sign up a new user.
+     * @param {object} user
+     */
+    fnSignUp = (user: any) => {
+        const db = new DbService();
+        return new Promise((resolve, reject) => {
+            const {text, values} = db.fnBuildInsertQuery('users', user);
+            db.query(text, values,
+                (err, res) => {
+                    db.end();
+                    if (err) {
+                        reject(err);
+                    } else if (res) {
+                        resolve(res.rows[0]);
+                    }
+                });
+        });
+    }
+
+    /**
      * Update existing user.
      * @param {number} userId - request object.
      * @param {object} user - request object.
      */
-    fnUpdateUser = (userId: number, user: object) => {
+    fnUpdateUser = (userId: number, user: any) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
             const {text, values} = db.fnBuildUpdateQuery('users', userId, user);
@@ -122,7 +146,8 @@ export default class UsersDAO {
     fnDeleteUser = (userId) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            db.query('Delete from users where id = $1 Returning *', [userId],
+            const {text, values} = db.fnBuildDeleteQuery('users', userId);
+            db.query(text, values,
                 (err, res) => {
                     db.end();
                     if (err) {
@@ -140,27 +165,6 @@ export default class UsersDAO {
                         }
                     }
                 });
-        });
-    }
-
-    /**
-     * Get all users.
-     */
-    fnGetUsers = () => {
-        const db = new DbService();
-        return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM users', null, (err, res) => {
-                db.end();
-                if (err) {
-                    reject(err);
-                } else {
-                    if (res.rows.length > 0) {
-                        resolve(res.rows);
-                    } else {
-                        resolve([]);
-                    }
-                }
-            });
         });
     }
 }

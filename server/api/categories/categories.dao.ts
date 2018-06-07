@@ -1,5 +1,4 @@
 import DbService from '../../services/db.service';
-import Common from '../../services/utils/common';
 
 export default class CategoriesDAO {
 
@@ -9,7 +8,8 @@ export default class CategoriesDAO {
     fnGetCategories = () => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM categories', null, (err, res) => {
+            const {text, values} = db.fnBuildFindQuery('categories');
+            db.query(text, values, (err, res) => {
                 db.end();
                 if (err) {
                     reject(err);
@@ -31,7 +31,8 @@ export default class CategoriesDAO {
     fnGetCategoryById = (id) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM categories WHERE id = $1', [id], (err, res) => {
+            const {text, values} = db.fnBuildFindQuery('categories', {where: {id: id}});
+            db.query(text, values, (err, res) => {
                 db.end();
                 if (err) {
                     reject(err);
@@ -57,10 +58,8 @@ export default class CategoriesDAO {
      */
     fnCreateCategory = (category) => {
         const db = new DbService();
-        const common = new Common();
         return new Promise((resolve, reject) => {
-            const text = 'INSERT INTO categories (name, description) VALUES($1, $2) RETURNING *';
-            const values = [`${category.name}`, `${category.description}`];
+            const {text, values} = db.fnBuildInsertQuery('categories', category);
             db.query(text, values,
                 (err, res) => {
                     db.end();
@@ -89,9 +88,8 @@ export default class CategoriesDAO {
      */
     fnUpdateCategory = (categoryId, category) => {
         const db = new DbService();
-        const common = new Common();
         return new Promise((resolve, reject) => {
-            const {text, values } = common.generateUpdateQuery(categoryId, category, 'categories');
+            const {text, values} = db.fnBuildUpdateQuery('categories', categoryId, category);
             db.query(text, values,
                 (err, res) => {
                     db.end();
@@ -120,7 +118,8 @@ export default class CategoriesDAO {
     fnDeleteCategory = (categoryId) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            db.query('Delete from categories where id = $1 Returning *', [categoryId],
+            const {text, values} = db.fnBuildDeleteQuery('categories', categoryId);
+            db.query(text, values,
                 (err, res) => {
                     db.end();
                     if (err) {

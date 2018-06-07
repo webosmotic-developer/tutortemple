@@ -13,10 +13,10 @@ export default class DbService {
     /**
      * Execute query after pool connection completed.
      * @param {string} text - database query.
-     * @param {object} params - array of values
-     * @param {function} callback
+     * @param {any} params - array of values
+     * @param {any} callback - callback function
      * */
-    query = (text, params, callback) => {
+    query = (text: string, params: any, callback: any) => {
         return this.pool.query(text, params, callback);
     }
 
@@ -30,9 +30,9 @@ export default class DbService {
     /**
      * Build insert query.
      * @param {string} tableName - database table name.
-     * @param {object} object - insert data using json object.
+     * @param {any} object - insert data using json object.
      */
-    fnBuildInsertQuery = (tableName, object) => {
+    fnBuildInsertQuery = (tableName: string, object: any) => {
         // Remove id property if available because it's auto increment not needed.
         if (object.hasOwnProperty('id')) {
             delete object.id;
@@ -61,9 +61,9 @@ export default class DbService {
      * Build update query.
      * @param {string} tableName - database table name.
      * @param {string} id - unique id for update.
-     * @param {object} object - update data using json object.
+     * @param {any} object - update data using json object.
      */
-    fnBuildUpdateQuery = (tableName, id, object) => {
+    fnBuildUpdateQuery = (tableName: string, id: number, object: any) => {
         // Remove id property if available because update not needed for id.
         if (object.hasOwnProperty('id')) {
             delete object.id;
@@ -95,14 +95,14 @@ export default class DbService {
     /**
      * Build find records query using pagination and sorting. It is not support join
      * @param {string} tableName - database table name.
-     * @param {object} filters - filters object have following property:
+     * @param {any} filters - filters object have following property:
      * cols - It is table columns name array for getting specific column data.
      * sortBy - It is table column name for ordering data
      * orderBy - Order by property set data order in ASC or DESC. By default it is ASC.
      * perPage - Per page property use for set limit.
      * pageNo - Page No property use for set offset.
      */
-    fnBuildFindQuery = (tableName, filters?: object) => {
+    fnBuildFindQuery = (tableName: string, filters?: any) => {
         // Setup static beginning of query
         let query = ['SELECT * from ' + tableName];
         if (filters) {
@@ -127,6 +127,54 @@ export default class DbService {
         }
 
         // Return a complete query string
-        return {text: query.join(' ')};
+        return {text: query.join(' '), values: null};
+    }
+
+    /**
+     * Build find one record query using by id, email etc.
+     * @param {string} tableName - database table name.
+     * @param {any} filters - filters object have following property:
+     * cols - It is table columns name array for getting specific column data.
+     * where - It is object that have key as column name and value as field value.
+     */
+    fnBuildFindOneQuery = (tableName: string, filters?: any) => {
+        // Setup static beginning of query
+        let query = ['SELECT * from ' + tableName];
+        let values = [];
+        if (filters) {
+            if (filters.hasOwnProperty('cols')) {
+                // SELECT col1, col2 from tableName
+                query = ['SELECT ' + filters.cols.join(', ') + ' from ' + tableName];
+            }
+            if (filters.hasOwnProperty('where')) {
+                // SELECT (col1, col2)/* from tableName where col1=$1, col2=$2
+                query.push('WHERE');
+                // Create another array storing each set command
+                // and assigning a number value for parameterized query
+                const set = [];
+                Object.keys(filters.where).forEach((key, i) => {
+                    set.push(key + ' = $' + (i + 1));
+                });
+                query.push(set.join(', '));
+
+                // Turn req.body into an array of values
+                values = Object.keys(filters.where).map((key) => {
+                    return filters.where[key];
+                });
+            }
+        }
+
+        // Return a complete query string
+        return {text: query.join(' '), values};
+    }
+
+    /**
+     * Build find one record query using by id, email etc.
+     * @param {string} tableName - database table name.
+     * @param {number} id - unique id for find record
+     */
+    fnBuildDeleteQuery = (tableName: string, id?: number) => {
+        // Return a complete query string
+        return {text: 'DELETE from ' + tableName + 'WHERE id = $1 Returning *', values: [id]};
     }
 }
