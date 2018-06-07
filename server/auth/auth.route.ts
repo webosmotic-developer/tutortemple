@@ -26,13 +26,15 @@ export default function fnAuthRoutes(router) {
     router.route('/auth/facebook')
         .get(passport.authenticate('facebook', {
             scope: ['email'],
-            failureRedirect: '/signup',
+            successRedirect : '/',
+            failureRedirect: '/',
             session: false
         }));
 
     router.route('/auth/facebook/callback')
         .get(passport.authenticate('facebook', {
-            failureRedirect: '/signup',
+            successRedirect : '/',
+            failureRedirect: '/',
             session: false
         }), auth.fnSetTokenCookie);
 }

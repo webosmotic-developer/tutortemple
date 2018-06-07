@@ -19,7 +19,7 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
                     if (!user) {
                         done(null, user);
                     } else {
-                        return done(null, user);
+                        done(null, user);
                     }
                 })
                 .catch((err) => {
