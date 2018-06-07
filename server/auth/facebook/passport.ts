@@ -9,7 +9,7 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
     passport.use(new FacebookStrategy({
             clientID: process.env.FACEBOOK_ID,
             clientSecret: process.env.FACEBOOK_SECRET,
-            callbackURL: '/api/auth/facebook/callback',
+            callbackURL: process.env.FACEBOOK_CALLBACK_URL,
             profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified']
         },
         function (accessToken, refreshToken, profile, done) {

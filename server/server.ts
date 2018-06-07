@@ -44,45 +44,45 @@ app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
 
 /*----- START: Logs File Configuration -----*/
-// const LOGS_DIR_PATH = join(process.cwd(), 'logs/');
-// const CURRENT_DATE_FORMAT = 'YYYY_MM_DD';
-// if (!fs.existsSync(LOGS_DIR_PATH)) {
-//     fs.mkdirSync(LOGS_DIR_PATH);
-// }
-// const fnHookSTD = (std, callback, type): any => {
-//     std.write = (() => {
-//         return (string): any => {
-//             callback(string, type);
-//         };
-//     })();
-// };
-//
-// const fnWriteLog = (s, type) => {
-//     const PP_CMD_LOGS_FILE_NAME = 'PP_LOGS_' + moment().utc().format(CURRENT_DATE_FORMAT) + '.txt';
-//     const access = fs.createWriteStream(LOGS_DIR_PATH + PP_CMD_LOGS_FILE_NAME, {flags: 'a+', encoding: 'utf8'});
-//     const dateFormat = moment().utc().format('YYYY-MM-DDTHH:mm:ss.SSS');
-//     const msg = s.replace(/\[0m/gi, '').replace(//gi, '').replace(/\[3[0-9]m/gi, '');
-//     access.write(' [' + dateFormat + '] ' + '[' + type + '] ' + msg);
-// };
-//
-// fnHookSTD(process.stdout, fnWriteLog, 'INFO');
-// fnHookSTD(process.stderr, fnWriteLog, 'ERROR');
-// app.get('/logs', function (req, res) {
-//     let DATE = moment().utc().format(CURRENT_DATE_FORMAT);
-//     if (req.query.date) {
-//         DATE = moment(req.query.date, CURRENT_DATE_FORMAT).format(CURRENT_DATE_FORMAT);
-//     }
-//     if (DATE === 'Invalid date') {
-//         res.status(500).send('Invalid date. Please try YYYY/MM/DD or YYYY-MM-DD');
-//     }
-//     const FILE_NAME = 'PP_LOGS_' + DATE + '.txt';
-//     if (fs.existsSync(LOGS_DIR_PATH + FILE_NAME)) {
-//         res.sendFile(LOGS_DIR_PATH + FILE_NAME);
-//     } else {
-//         res.status(500).send('Logs file not available for date ' + DATE + '.');
-//     }
-//
-// });
+const LOGS_DIR_PATH = join(process.cwd(), 'logs/');
+const CURRENT_DATE_FORMAT = 'YYYY_MM_DD';
+if (!fs.existsSync(LOGS_DIR_PATH)) {
+    fs.mkdirSync(LOGS_DIR_PATH);
+}
+const fnHookSTD = (std, callback, type): any => {
+    std.write = (() => {
+        return (string): any => {
+            callback(string, type);
+        };
+    })();
+};
+
+const fnWriteLog = (s, type) => {
+    const PP_CMD_LOGS_FILE_NAME = 'PP_LOGS_' + moment().utc().format(CURRENT_DATE_FORMAT) + '.txt';
+    const access = fs.createWriteStream(LOGS_DIR_PATH + PP_CMD_LOGS_FILE_NAME, {flags: 'a+', encoding: 'utf8'});
+    const dateFormat = moment().utc().format('YYYY-MM-DDTHH:mm:ss.SSS');
+    const msg = s.replace(/\[0m/gi, '').replace(//gi, '').replace(/\[3[0-9]m/gi, '');
+    access.write(' [' + dateFormat + '] ' + '[' + type + '] ' + msg);
+};
+
+fnHookSTD(process.stdout, fnWriteLog, 'INFO');
+fnHookSTD(process.stderr, fnWriteLog, 'ERROR');
+app.get('/logs', function (req, res) {
+    let DATE = moment().utc().format(CURRENT_DATE_FORMAT);
+    if (req.query.date) {
+        DATE = moment(req.query.date, CURRENT_DATE_FORMAT).format(CURRENT_DATE_FORMAT);
+    }
+    if (DATE === 'Invalid date') {
+        res.status(500).send('Invalid date. Please try YYYY/MM/DD or YYYY-MM-DD');
+    }
+    const FILE_NAME = 'PP_LOGS_' + DATE + '.txt';
+    if (fs.existsSync(LOGS_DIR_PATH + FILE_NAME)) {
+        res.sendFile(LOGS_DIR_PATH + FILE_NAME);
+    } else {
+        res.status(500).send('Logs file not available for date ' + DATE + '.');
+    }
+
+});
 /*----- END: Logs File Configuration -----*/
 
 /*----- START: Node Process events for get exceptions -----*/
