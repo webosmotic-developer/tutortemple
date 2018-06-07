@@ -91,7 +91,7 @@ export default class Auth {
      * Set token cookie directly for oAuth strategies
      */
     fnSetTokenCookie = (req, res) => {
-        console.log('+++++++++++++++ fnSetTokenCookie +++++++++++++++++++++++');
+        console.log('+++++++++++++++ fnSetTokenCookie +++++++++++++++++++++++', req.user);
         if (!req.user) {
             console.error('Auth:fnSetTokenCookie()', 'Something went wrong, please try again.');
             return res.status(404).json({message: 'Something went wrong, please try again.'});
