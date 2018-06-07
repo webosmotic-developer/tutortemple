@@ -1,5 +1,4 @@
 import DbService from '../../services/db.service';
-import Common from '../../services/utils/common';
 
 export default class UsersDAO {
 
@@ -7,7 +6,7 @@ export default class UsersDAO {
      * Get single user info by id.
      * @param {number} id
      */
-    fnGetUserById = (id) => {
+    fnGetUserById = (id: number) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
             db.query('SELECT * FROM users WHERE id = $1', [id], (err, res) => {
@@ -34,7 +33,7 @@ export default class UsersDAO {
      * Get single user info by email.
      * @param {string} email
      */
-    fnGetUserByEmail = (email) => {
+    fnGetUserByEmail = (email: string) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
             db.query('SELECT * FROM users WHERE email = $1', [email], (err, res) => {
@@ -52,11 +51,10 @@ export default class UsersDAO {
      * Sign up a new user.
      * @param {object} user
      */
-    fnSignUp = (user) => {
+    fnSignUp = (user: object) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            const text = 'INSERT INTO users (email, password, roles, is_verified) VALUES($1, $2, $3, $4) RETURNING *';
-            const values = [`${user.email}`, `${user.password}`, `${user.roles}`, true];
+            const {text, values} = db.fnBuildInsertQuery('users', user);
             db.query(text, values,
                 (err, res) => {
                     db.end();
@@ -71,9 +69,9 @@ export default class UsersDAO {
 
     /**
      * Get single user info by facebook id.
-     * @param {string} id
+     * @param {number} id
      */
-    fnGetUserByFacebookId = (id) => {
+    fnGetUserByFacebookId = (id: number) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
             db.query('SELECT * FROM users WHERE facebook ->> \'id\' = $1', [id], (err, res) => {
@@ -89,14 +87,13 @@ export default class UsersDAO {
 
     /**
      * Update existing user.
-     * @param {string} userId - request object.
+     * @param {number} userId - request object.
      * @param {object} user - request object.
      */
-    fnUpdateUser = (userId, user) => {
+    fnUpdateUser = (userId: number, user: object) => {
         const db = new DbService();
-        const common = new Common();
         return new Promise((resolve, reject) => {
-            const {text, values } = common.generateUpdateQuery(userId, user, 'users');
+            const {text, values} = db.fnBuildUpdateQuery('users', userId, user);
             db.query(text, values,
                 (err, res) => {
                     db.end();
