@@ -19,21 +19,21 @@ export default function fnAuthRoutes(router) {
     router.route('/auth/login').post(fnLocal);
     router.route('/auth/logout')
         .get((req, res) => {
-            res.clearCookie('connect.sid', {path: '/'}); // see comments above
-            res.status(200).json({message: 'Logout successfully.'}); // tell the client everything went well
+            req.logout();
+            res.status(200).json({message: 'Logout successfully.'});
         });
 
     router.route('/auth/facebook')
         .get(passport.authenticate('facebook', {
             scope: ['email'],
-            successRedirect : '/',
+            successRedirect: '/',
             failureRedirect: '/',
             session: false
         }));
 
     router.route('/auth/facebook/callback')
         .get(passport.authenticate('facebook', {
-            successRedirect : '/',
+            successRedirect: '/',
             failureRedirect: '/',
             session: false
         }), auth.fnSetTokenCookie);
