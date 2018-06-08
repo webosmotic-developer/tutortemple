@@ -20,15 +20,13 @@ import {SignInComponent} from './components/sign-in/sign-in.component';
 import {ReadJsonService} from './shared/services/read-json-service/read-json.service';
 import {HowItWorksComponent} from './components/how-it-works/how-it-works.component';
 import {ContactsComponent} from './components/contacts/contacts.component';
-import {SignupService} from './shared/services/signup-service/signup.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {ToastrModule} from 'ngx-toastr';
-import {SigninService} from './shared/services/signin-service/signin.service';
-import {AuthenticationService} from './shared/services/authentication/authentication.service';
 import {AuthGuardService} from './shared/services/auth-guard/auth-guard.service';
 import {NonAuthGuardService} from './shared/services/non-auth-guard/non-auth-guard.service';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {AuthService} from './shared/services/auth-service/auth.service';
 
 @NgModule({
     declarations: [
@@ -61,7 +59,10 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
         })) // ToastrModule added
     ],
     providers: [
-        ReadJsonService, SignupService, SigninService, AuthenticationService, AuthGuardService, NonAuthGuardService
+        ReadJsonService,
+        AuthService,
+        AuthGuardService,
+        NonAuthGuardService
     ],
     bootstrap: [AppComponent]
 })

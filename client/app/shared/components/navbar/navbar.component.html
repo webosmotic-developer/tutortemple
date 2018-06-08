@@ -10,14 +10,19 @@
                             <p>How it works?</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="!isLoggedIn">
                         <a class="nav-link" routerLink="/signin">
                             <p>Sign in</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="!isLoggedIn">
                         <a class="nav-link" routerLink="/signup">
                             <p>Sign up</p>
+                        </a>
+                    </li>
+                    <li class="nav-item" *ngIf="isLoggedIn" (click)="fnSignOut()">
+                        <a class="nav-link">
+                            <p>Sign out</p>
                         </a>
                     </li>
                 </ul>

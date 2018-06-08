@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Constant} from '../../shared/constant';
-import {SigninService} from '../../shared/services/signin-service/signin.service';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
+import {AuthService} from '../../shared/services/auth-service/auth.service';
 
 interface SignIn {
     email: string;
@@ -19,7 +19,7 @@ export class SignInComponent implements OnInit {
     public emailRegEx: any = Constant.EMAIL_REG_EX;
     public passwordRegEx: any = Constant.PASSWORD_REG_EX;
 
-    constructor(private signinService: SigninService, private toastr: ToastrService, private _router: Router) {
+    constructor(private authService: AuthService, private toastr: ToastrService, private router: Router) {
         this.signInObj = {
             'email': '',
             'password': ''
@@ -29,14 +29,17 @@ export class SignInComponent implements OnInit {
     ngOnInit() {
     }
 
-    fnCheckAuthentication() {
-        if (this.signinService.checkUserAuthentication(this.signInObj.email, this.signInObj.password)) {
-            this.toastr.success('Login successfully!', 'Success!');
-            this._router.navigate(['dashboard']);
-
-        } else {
-            this.toastr.error('Email and password invalid!', 'Error!');
-        }
+    fnSignIn() {
+        this.authService.fnSignIn(this.signInObj)
+            .then((response: any) => {
+                if (response && response.token) {
+                    this.router.navigate(['dashboard']);
+                    this.toastr.success('Welcome to Tutor Temple.');
+                }
+            })
+            .catch((error) => {
+                this.toastr.error('Login failed, incorrect email or password.');
+            });
     }
 
     fnSignInOauth = (provider) => {

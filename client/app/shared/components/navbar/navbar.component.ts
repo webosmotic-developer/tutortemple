@@ -1,6 +1,8 @@
-import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, HostListener, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {strictEqual} from 'assert';
+import {AuthService} from '../../services/auth-service/auth.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -10,9 +12,13 @@ import {strictEqual} from 'assert';
 export class NavbarComponent implements OnInit {
   private currentState: string;
   public hideTransparant = true;
+  public isLoggedIn: boolean;
 
   constructor(public el: ElementRef,
-              private _router: Router) {
+              private _router: Router,
+              private authService: AuthService,
+              private chRef: ChangeDetectorRef,
+              private toastr: ToastrService) {
     this._router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         this.currentState = e.url;
@@ -23,6 +29,7 @@ export class NavbarComponent implements OnInit {
           this.hideTransparant = true;
         }
       }
+        this.fnUpdateMemberVariable();
     });
   }
 
@@ -41,6 +48,20 @@ export class NavbarComponent implements OnInit {
       }
     }
   }
+
+    fnUpdateMemberVariable() {
+        this.isLoggedIn = this.authService.fnIsLoggedIn();
+        this.chRef.detectChanges();
+    }
+
+    fnSignOut() {
+        this.authService.fnSignOut()
+            .then(() => {
+                this._router.navigate(['']);
+                this.toastr.success('See you soon.');
+                this.fnUpdateMemberVariable();
+            });
+    }
 
   ngOnInit() {
   }
