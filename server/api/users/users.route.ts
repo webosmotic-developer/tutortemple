@@ -6,7 +6,7 @@ export default function fnUsersRoutes(router) {
     const usersCtrl = new UsersController();
     const auth = new Auth();
 
-    router.route('/sign-up').post(usersCtrl.fnSignUp);
+    router.route('/user/register').post(usersCtrl.fnSignUp);
     router.route('/user')
         .get(auth.fnIsAuthenticated(), usersCtrl.fnGetUsers)
         .post(auth.fnIsAuthenticated(), usersCtrl.fnCreateUser);
