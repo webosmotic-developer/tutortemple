@@ -32,7 +32,7 @@ export default class UsersDAO extends DAO {
      * Insert a new user.
      * @param {object} user
      */
-    fnInsert = (user: any) => {
+    fnCreateUser = (user: any) => {
         return new Promise((resolve, reject) => {
             this.fnInsert(user)
                 .then((res) => resolve(res))
