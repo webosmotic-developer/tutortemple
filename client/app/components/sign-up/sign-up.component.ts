@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
         this.signUpObj = {
             'email': '',
             'password': '',
-            'roles': '',
+            'roles': 'STUDENT',
             'cfPassword': '',
         };
     }
@@ -55,7 +55,7 @@ export class SignUpComponent implements OnInit {
         };
         if (signUpObj) {
             this.authService.fnSignUp(signUpObj).then(() => {
-                this.router.navigate(['signin']);
+                this.router.navigate(['dashboard']);
                 this.toastr.success(' User has been registered successfully!', 'Success!');
             }).catch((error: any) => {
                 if (error) {

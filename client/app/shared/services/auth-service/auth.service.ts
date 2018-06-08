@@ -22,8 +22,14 @@ export class AuthService {
     fnSignUp(obj: any) {
         return new Promise((resolve, reject) => {
             this._http
-                .post(Constant.API_URL + 'api/sign-up', obj)
+                .post(Constant.API_URL + 'api/user/register', obj)
                 .subscribe((response: any) => {
+                    if (response && response.token) {
+                        if (isPlatformBrowser(this.platformId)) {
+                            localStorage.setItem('AUTH_TOKEN', response.token);
+                        }
+                        this.token = this._fnParseJWT(response['token']);
+                    }
                     resolve(response);
                 }, (error) => {
                     reject(error);

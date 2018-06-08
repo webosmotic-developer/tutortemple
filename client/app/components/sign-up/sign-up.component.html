@@ -16,7 +16,8 @@
                                 <div class="mb-2 radio-group">
                                     <div class="radio">
                                         <input type="radio" name="radio1" id="student"  checked=""
-                                               value="STUDENT" [(ngModel)]="signUpObj && signUpObj.roles">
+                                               value="STUDENT" [(ngModel)]="signUpObj && signUpObj.roles" required
+                                        >
                                         <label for="student">
                                             I am a Student
                                         </label>
@@ -24,7 +25,8 @@
 
                                     <div class="radio ml-1">
                                         <input type="radio" name="radio1" id="teacher"
-                                               class="text-primary"  value="TEACHER" [(ngModel)]="signUpObj && signUpObj.roles">
+                                               class="text-primary"  value="TEACHER" [(ngModel)]="signUpObj && signUpObj.roles"
+                                        required>
                                         <label for="teacher">
                                                I am a Teacher
                                         </label>
