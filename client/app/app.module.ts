@@ -9,7 +9,7 @@ import {FooterComponent} from './shared/components/footer/footer.component';
 import {HomeComponent} from './components/home/home.component';
 import {CardComponent} from './shared/components/card/card.component';
 import {SlickSliderComponent} from './shared/components/slick-slider/slick-slider.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HoverImageComponent} from './shared/components/hover-image/hover-image.component';
 import {HomeSearchComponent} from './shared/components/home-search/home-search.component';
 import {TypeaheadModule} from 'ngx-bootstrap/typeahead';
@@ -27,6 +27,7 @@ import {AuthGuardService} from './shared/services/auth-guard/auth-guard.service'
 import {NonAuthGuardService} from './shared/services/non-auth-guard/non-auth-guard.service';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {AuthService} from './shared/services/auth-service/auth.service';
+import {InterceptorProvider} from './shared/interceptor';
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ import {AuthService} from './shared/services/auth-service/auth.service';
         })) // ToastrModule added
     ],
     providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: InterceptorProvider, multi: true},
         ReadJsonService,
         AuthService,
         AuthGuardService,
