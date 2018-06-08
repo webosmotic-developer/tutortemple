@@ -36,22 +36,10 @@ export default class UsersService {
     fnSignUp = (req) => {
         const userObj = req.body;
         return new Promise((resolve, reject) => {
-            if (userObj.email && userObj.password && userObj.roles) {
-                this.usersDAO
-                    .fnInsert(userObj)
-                    .then(user => resolve(user))
-                    .catch(error => {
-                        reject(error);
-                    });
-            } else {
-                reject({
-                    message: {
-                        name: 'error',
-                        code: '23505',
-                        detail: 'Missing required field.'
-                    }
-                });
-            }
+            this.usersDAO
+                .fnCreateUser(userObj)
+                .then(user => resolve(user))
+                .catch((error) => reject(error));
         });
     };
 
@@ -63,7 +51,7 @@ export default class UsersService {
         const userObj = req.body;
         return new Promise((resolve, reject) => {
             this.usersDAO
-                .fnInsert(userObj)
+                .fnCreateUser(userObj)
                 .then(user => resolve(user))
                 .catch((error) => reject(error));
         });
