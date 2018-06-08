@@ -1,7 +1,9 @@
 import DbService from '../../services/db.service';
+import DAO from '../../services/dao.service';
 
-export default class SubjectDAO {
+export default class SubjectDAO extends DAO {
 
+    table = 'subjects';
     /**
      * Get all subjects.
      */
@@ -34,23 +36,9 @@ export default class SubjectDAO {
     fnGetSubjectById = (id) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM subjects WHERE id = $1', [id], (err, res) => {
-                db.end();
-                if (err) {
-                    reject(err);
-                } else {
-                    if (res.rows.length > 0) {
-                        resolve(res.rows[0]);
-                    } else {
-                        reject({
-                            message: {
-                                name: 'error',
-                                detail: 'Subject doesn\'t exist',
-                            }
-                        });
-                    }
-                }
-            });
+            this.fnFindOne(id)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
         });
     }
 
@@ -61,25 +49,9 @@ export default class SubjectDAO {
     fnCreateSubject = (subject) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            const {text, values } = db.fnBuildInsertQuery('subjects', subject);
-            db.query(text, values,
-                (err, res) => {
-                    db.end();
-                    if (err) {
-                        reject(err);
-                    } else if (res) {
-                        if (res.rows.length > 0) {
-                            resolve(res.rows[0]);
-                        } else {
-                            reject({
-                                message: {
-                                    name: 'error',
-                                    detail: 'Subject doesn\'t exist',
-                                }
-                            });
-                        }
-                    }
-                });
+            this.fnInsert(subject)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
         });
     }
 
@@ -91,25 +63,9 @@ export default class SubjectDAO {
     fnUpdateSubject = (subjectId, subject) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            const {text, values } = db.fnBuildUpdateQuery('subjects', subjectId, subject);
-            db.query(text, values,
-                (err, res) => {
-                    db.end();
-                    if (err) {
-                        reject(err);
-                    } else if (res) {
-                        if (res.rows.length > 0) {
-                            resolve(res.rows[0]);
-                        } else {
-                            reject({
-                                message: {
-                                    name: 'error',
-                                    detail: 'Subject doesn\'t exist',
-                                }
-                            });
-                        }
-                    }
-                });
+            this.fnUpdate(subjectId, subject)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
         });
     }
 
@@ -120,24 +76,9 @@ export default class SubjectDAO {
     fnDeleteSubject = (subjectId) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            db.query('Delete from subjects where id = $1 Returning *', [subjectId],
-                (err, res) => {
-                    db.end();
-                    if (err) {
-                        reject(err);
-                    } else if (res) {
-                        if (res.rows.length > 0) {
-                            resolve(res.rows[0]);
-                        } else {
-                            reject({
-                                message: {
-                                    name: 'error',
-                                    detail: 'Subject doesn\'t exist',
-                                }
-                            });
-                        }
-                    }
-                });
+            this.fnDelete(subjectId)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
         });
     }
 }

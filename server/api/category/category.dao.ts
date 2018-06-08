@@ -1,6 +1,9 @@
 import DbService from '../../services/db.service';
+import DAO from '../../services/dao.service';
 
-export default class CategoriesDAO {
+export default class CategoriesDAO extends DAO {
+
+    table = 'categories';
 
     /**
      * Get all category.
@@ -8,19 +11,11 @@ export default class CategoriesDAO {
     fnGetCategories = () => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            const {text, values} = db.fnBuildFindQuery('categories');
-            db.query(text, values, (err, res) => {
-                db.end();
-                if (err) {
-                    reject(err);
-                } else {
-                    if (res.rows.length > 0) {
-                        resolve(res.rows);
-                    } else {
-                        resolve([]);
-                    }
-                }
-            });
+            this.fnFind()
+                .then((res) => {
+                    resolve(res);
+                })
+                .catch((err) => reject(err));
         });
     }
 
@@ -31,24 +26,9 @@ export default class CategoriesDAO {
     fnGetCategoryById = (id) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            const {text, values} = db.fnBuildFindQuery('categories', {where: {id: id}});
-            db.query(text, values, (err, res) => {
-                db.end();
-                if (err) {
-                    reject(err);
-                } else {
-                    if (res.rows.length > 0) {
-                        resolve(res.rows[0]);
-                    } else {
-                        reject({
-                            message: {
-                                name: 'error',
-                                detail: 'Category doesn\'t exist',
-                            }
-                        });
-                    }
-                }
-            });
+            this.fnFindOne(id)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
         });
     }
 
@@ -59,25 +39,9 @@ export default class CategoriesDAO {
     fnCreateCategory = (category) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            const {text, values} = db.fnBuildInsertQuery('categories', category);
-            db.query(text, values,
-                (err, res) => {
-                    db.end();
-                    if (err) {
-                        reject(err);
-                    } else if (res) {
-                        if (res.rows.length > 0) {
-                            resolve(res.rows[0]);
-                        } else {
-                            reject({
-                                message: {
-                                    name: 'error',
-                                    detail: 'Category doesn\'t exist',
-                                }
-                            });
-                        }
-                    }
-                });
+            this.fnInsert(category)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
         });
     }
 
@@ -89,25 +53,9 @@ export default class CategoriesDAO {
     fnUpdateCategory = (categoryId, category) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            const {text, values} = db.fnBuildUpdateQuery('categories', categoryId, category);
-            db.query(text, values,
-                (err, res) => {
-                    db.end();
-                    if (err) {
-                        reject(err);
-                    } else if (res) {
-                        if (res.rows.length > 0) {
-                            resolve(res.rows[0]);
-                        } else {
-                            reject({
-                                message: {
-                                    name: 'error',
-                                    detail: 'Category doesn\'t exist',
-                                }
-                            });
-                        }
-                    }
-                });
+            this.fnUpdate(categoryId, category)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
         });
     }
 
@@ -118,25 +66,9 @@ export default class CategoriesDAO {
     fnDeleteCategory = (categoryId) => {
         const db = new DbService();
         return new Promise((resolve, reject) => {
-            const {text, values} = db.fnBuildDeleteQuery('categories', categoryId);
-            db.query(text, values,
-                (err, res) => {
-                    db.end();
-                    if (err) {
-                        reject(err);
-                    } else if (res) {
-                        if (res.rows.length > 0) {
-                            resolve(res.rows[0]);
-                        } else {
-                            reject({
-                                message: {
-                                    name: 'error',
-                                    detail: 'Category doesn\'t exist',
-                                }
-                            });
-                        }
-                    }
-                });
+            this.fnDelete(categoryId)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
         });
     }
 }
