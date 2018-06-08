@@ -4,6 +4,10 @@ html, body {
     height: 100%;
 }
 
+.c-poiner{
+    cursor: pointer;
+}
+
 .slick-next {
     right: -15px;
 }

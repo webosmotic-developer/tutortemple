@@ -20,8 +20,8 @@
                             <p>Sign up</p>
                         </a>
                     </li>
-                    <li class="nav-item" *ngIf="isLoggedIn" (click)="fnSignOut()">
-                        <a class="nav-link">
+                    <li class="nav-item c-poiner" *ngIf="isLoggedIn">
+                        <a class="nav-link" (click)="fnSignOut()">
                             <p>Sign out</p>
                         </a>
                     </li>
@@ -34,7 +34,7 @@
         <div class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" routerLink="/home" rel="tooltip"
-                   title="Designed by Invision. Coded by Creative Tim" data-placement="bottom">
+                   data-placement="bottom">
                     Tutor Temple
                 </a>
                 <button class="navbar-toggler navbar-toggler pull-right p-2" type="button" data-toggle="collapse"
