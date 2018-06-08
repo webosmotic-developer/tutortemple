@@ -1,8 +1,8 @@
 import * as express from 'express';
 
 import fnAuthRoutes from './auth/auth.route';
-import fnUsersRoutes from './api/users/users.route';
-import fnCategoriesRoutes from './api/categories/categories.route';
+import fnUsersRoutes from './api/user/user.route';
+import fnCategoriesRoutes from './api/category/category.route';
 import fnSubjectRoutes from './api/subject/subject.route';
 
 export default function fnSetRoutes(app) {

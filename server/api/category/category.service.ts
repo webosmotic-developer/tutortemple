@@ -1,10 +1,10 @@
-import CategoriesDAO from './categories.dao';
+import CategoriesDAO from './category.dao';
 
 export default class CategoriesService {
     categoriesDAO = new CategoriesDAO();
 
     /**
-     * Get all categories
+     * Get all category
      */
     fnGetCategories = () => {
         return new Promise((resolve, reject) => {

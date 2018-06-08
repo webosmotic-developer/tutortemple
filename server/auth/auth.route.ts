@@ -4,7 +4,7 @@ import fnSetupFacebookPassport from './facebook/passport';
 import fnSetupLocalPassport from './local/passport';
 import fnLocal from './local/local';
 import Auth from './auth';
-import UsersDAO from '../api/users/users.dao';
+import UsersDAO from '../api/user/user.dao';
 
 export default function fnAuthRoutes(router) {
     const auth = new Auth();

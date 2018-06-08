@@ -1,4 +1,4 @@
-import CategoriesService from './categories.service';
+import CategoriesService from './category.service';
 
 export default class CategoriesController {
     categoriesService = new CategoriesService();
@@ -49,7 +49,7 @@ export default class CategoriesController {
     }
 
     /**
-     * Get all categories
+     * Get all category
      * @param {object} req - request object.
      * @param {object} res - response object.
      */

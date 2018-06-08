@@ -3,7 +3,7 @@ import DbService from '../../services/db.service';
 export default class CategoriesDAO {
 
     /**
-     * Get all categories.
+     * Get all category.
      */
     fnGetCategories = () => {
         const db = new DbService();

@@ -1,4 +1,4 @@
-import UsersDAO from './users.dao';
+import UsersDAO from './user.dao';
 import Auth from '../../auth/auth';
 
 export default class UsersService {

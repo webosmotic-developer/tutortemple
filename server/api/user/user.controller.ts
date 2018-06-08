@@ -1,4 +1,4 @@
-import UsersService from './users.service';
+import UsersService from './user.service';
 
 export default class UsersController {
     usersService = new UsersService();

@@ -1,4 +1,4 @@
-import CategoriesController from './categories.controller';
+import CategoriesController from './category.controller';
 import Auth from '../../auth/auth';
 
 export default function fnCategoriesRoutes(router) {

@@ -1,4 +1,4 @@
-import UsersController from './users.controller';
+import UsersController from './user.controller';
 import Auth from '../../auth/auth';
 
 export default function fnUsersRoutes(router) {

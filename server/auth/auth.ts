@@ -2,7 +2,7 @@ import * as jwt from 'jsonwebtoken';
 import * as compose from 'composable-middleware';
 import * as expressJwt from 'express-jwt';
 
-import UsersDAO from '../api/users/users.dao';
+import UsersDAO from '../api/user/user.dao';
 import {Constant} from '../constant';
 
 const SECRET_SESSION = 'tutortemple' || process.env.SECRET_SESSION;
