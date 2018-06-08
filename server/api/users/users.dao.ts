@@ -1,5 +1,6 @@
 import DAO from '../../services/dao.service';
 import DbService from '../../services/db.service';
+import * as _ from 'lodash';
 
 export default class UsersDAO extends DAO {
 
@@ -11,7 +12,13 @@ export default class UsersDAO extends DAO {
     fnGetUsers = () => {
         return new Promise((resolve, reject) => {
             this.fnFind()
-                .then((res) => resolve(res))
+                .then((res) => {
+                    resolve(
+                        _.map(res, user => {
+                            return _.omit(user, 'password');
+                        })
+                    );
+                })
                 .catch((err) => reject(err));
         });
     };
@@ -23,7 +30,7 @@ export default class UsersDAO extends DAO {
     fnGetUserById = (id: number) => {
         return new Promise((resolve, reject) => {
             this.fnFindOne(id)
-                .then((res) => resolve(res))
+                .then((res) => resolve(_.omit(res, 'password')))
                 .catch((err) => reject(err));
         });
     };
@@ -35,7 +42,7 @@ export default class UsersDAO extends DAO {
     fnCreateUser = (user: any) => {
         return new Promise((resolve, reject) => {
             this.fnInsert(user)
-                .then((res) => resolve(res))
+                .then((res) => resolve(_.omit(res, 'password')))
                 .catch((err) => reject(err));
         });
     };
@@ -48,7 +55,7 @@ export default class UsersDAO extends DAO {
     fnUpdateUser = (userId: number, user: any) => {
         return new Promise((resolve, reject) => {
             this.fnUpdate(userId, user)
-                .then((res) => resolve(res))
+                .then((res) => resolve(_.omit(res, 'password')))
                 .catch((err) => reject(err));
         });
     };
@@ -60,7 +67,7 @@ export default class UsersDAO extends DAO {
     fnDeleteUser = (userId) => {
         return new Promise((resolve, reject) => {
             this.fnDelete(userId)
-                .then((res) => resolve(res))
+                .then((res) => resolve(_.omit(res, 'password')))
                 .catch((err) => reject(err));
         });
     };
@@ -78,7 +85,7 @@ export default class UsersDAO extends DAO {
                 if (err) {
                     reject(err);
                 } else if (res) {
-                    resolve(res.rows[0]);
+                    resolve(_.omit(res.rows[0], 'password'));
                 }
             });
         });
@@ -96,7 +103,7 @@ export default class UsersDAO extends DAO {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(res.rows[0]);
+                    resolve(_.omit(res.rows[0], 'password'));
                 }
             });
         });

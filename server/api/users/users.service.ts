@@ -1,4 +1,5 @@
 import UsersDAO from './users.dao';
+import Auth from '../../auth/auth';
 
 export default class UsersService {
     usersDAO = new UsersDAO();
@@ -35,10 +36,17 @@ export default class UsersService {
      */
     fnSignUp = (req) => {
         const userObj = req.body;
+        const auth = new Auth();
         return new Promise((resolve, reject) => {
             this.usersDAO
                 .fnCreateUser(userObj)
-                .then(user => resolve(user))
+                .then((user: any) => {
+                    const res  = {
+                        token: auth.fnSignToken(user.id),
+                        user: user,
+                    };
+                    resolve(res);
+                })
                 .catch((error) => reject(error));
         });
     };
