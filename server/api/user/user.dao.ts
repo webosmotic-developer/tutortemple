@@ -85,7 +85,7 @@ export default class UsersDAO extends DAO {
                 if (err) {
                     reject(err);
                 } else if (res) {
-                    resolve(_.omit(res.rows[0], 'password'));
+                    resolve(res.rows[0]);
                 }
             });
         });
