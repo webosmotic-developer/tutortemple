@@ -51,6 +51,7 @@
     "pg-native": "^3.0.0",
     "rxjs": "^6.0.0",
     "slick-carousel": "^1.8.1",
+    "socket.io": "^2.1.1",
     "ts-loader": "^4.3.0",
     "zone.js": "^0.8.26"
   },

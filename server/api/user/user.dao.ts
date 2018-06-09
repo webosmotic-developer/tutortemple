@@ -11,7 +11,6 @@ export default class UsersDAO extends DAO {
      */
     fnGetUsers = (req) => {
         const role = req.query.role;
-        const db = new DbService();
         const filters: any = {
             perPage: req.query.perPage,
             pageNo: req.query.pageNo,
