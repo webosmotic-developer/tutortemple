@@ -10,7 +10,7 @@ export default class UsersController {
      */
     fnGetUsers = (req, res) => {
         this.usersService
-            .fnGetUsers()
+            .fnGetUsers(req)
             .then(users => res.status(200).json(users))
             .catch(error => {
                 console.error('UsersController:fnGetUsers', error);

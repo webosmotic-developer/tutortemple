@@ -41,11 +41,28 @@ export default class DbService {
      */
     fnBuildFindQuery = (tableName: string, filters?: any) => {
         // Setup static beginning of query
+        let values = [];
         let query = ['SELECT * from ' + tableName];
         if (_.isObject(filters)) {
             if (filters.hasOwnProperty('cols') && _.isArray(filters.cols) && filters.cols.length) {
                 // SELECT col1, col2 from tableName
                 query = ['SELECT ' + filters.cols.join(', ') + ' from ' + tableName];
+            }
+            if (filters.hasOwnProperty('where')) {
+                // SELECT (col1, col2)/* from tableName where col1=$1, col2=$2
+                query.push('WHERE');
+                // Create another array storing each set command
+                // and assigning a number value for parameterized query
+                const set = [];
+                Object.keys(filters.where).forEach((key, i) => {
+                    set.push(key + ' = $' + (i + 1));
+                });
+                query.push(set.join(', '));
+
+                // Turn req.body into an array of values
+                values = Object.keys(filters.where).map((key) => {
+                    return filters.where[key];
+                });
             }
             if (filters.hasOwnProperty('sortBy') && filters.sortBy) {
                 // SELECT (col1, col2)/* from tableName ORDER BY sortBy
@@ -65,7 +82,7 @@ export default class DbService {
         }
 
         // Return a complete query string
-        return {text: query.join(' '), values: null};
+        return {text: query.join(' '), values: values};
     };
 
     /**

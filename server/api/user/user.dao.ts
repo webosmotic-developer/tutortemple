@@ -9,9 +9,20 @@ export default class UsersDAO extends DAO {
     /**
      * Get all users.
      */
-    fnGetUsers = () => {
+    fnGetUsers = (req) => {
+        const role = req.query.role;
+        const db = new DbService();
+        const filters: any = {
+            perPage: req.query.perPage,
+            pageNo: req.query.pageNo,
+            sortBy: req.query.sortBy,
+            orderBy: req.query.orderBy,
+        };
+        if (role) {
+            filters.where = {roles: role};
+        }
         return new Promise((resolve, reject) => {
-            this.fnFind()
+            this.fnFind(filters)
                 .then((res) => {
                     resolve(
                         _.map(res, user => {

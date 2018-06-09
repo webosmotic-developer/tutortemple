@@ -17,13 +17,14 @@ abstract class DAO {
      * @return {object}
      */
     fnFind = (filters?: any) => {
-        const query = {
+        let query = {
             cols: (_.isObject(filters) && filters.hasOwnProperty('cols') ? filters.cols : []),
             sortBy: (_.isObject(filters) && filters.hasOwnProperty('sortBy') ? filters.sortBy : null),
             orderBy: (_.isObject(filters) && filters.hasOwnProperty('orderBy') ? filters.orderBy : null),
             perPage: (_.isObject(filters) && filters.hasOwnProperty('perPage') ? filters.perPage : 500),
             pageNo: (_.isObject(filters) && filters.hasOwnProperty('pageNo') ? filters.pageNo : 1)
         };
+        query = _.assign({}, query, filters);
         return new Promise((resolve, reject) => {
             const db = new DbService();
             const {text, values} = db.fnBuildFindQuery(this.table, query);

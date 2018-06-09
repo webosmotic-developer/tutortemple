@@ -7,10 +7,10 @@ export default class UsersService {
     /**
      * Get all users
      */
-    fnGetUsers = () => {
+    fnGetUsers = (req) => {
         return new Promise((resolve, reject) => {
             this.usersDAO
-                .fnGetUsers()
+                .fnGetUsers(req)
                 .then(users => resolve(users))
                 .catch((error) => reject(error));
         });
