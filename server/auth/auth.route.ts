@@ -33,7 +33,7 @@ export default function fnAuthRoutes(router) {
             }
         });
 
-    router.route('/auth/facebook', (req, res, next) => {
+    router.route('/auth/facebook').get((req, res, next) => {
         console.log('req query string ', req.query);
         passport.authenticate('facebook', {
             scope: ['email'],
