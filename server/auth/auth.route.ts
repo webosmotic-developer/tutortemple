@@ -35,6 +35,7 @@ export default function fnAuthRoutes(router) {
 
     router.route('/auth/facebook').get((req, res, next) => {
         console.log('req query string ', req.query);
+        req._toParam = req.query.role;
         passport.authenticate('facebook', {
             scope: ['email'],
             successRedirect: '/',
