@@ -25,7 +25,7 @@ export default function fnAuthRoutes(router) {
             if (req.query.userId) {
                 usersDAO.fnUpdateUser(req.query.userId, {is_online: false})
                     .then((user) => {
-                        userSocket.fnRemoveUser(user);
+                        // userSocket.fnRemoveUser(user);
                         res.status(200).json({message: 'Logout successfully.'});
                     });
             } else {

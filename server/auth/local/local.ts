@@ -31,7 +31,7 @@ export default function fnLocal(req, res, next) {
         const token = auth.fnSignToken(userObj);
         usersDAO.fnUpdateUser(user.id, {is_online: true})
             .then(() => {
-                userSocket.fnAddUser(user);
+                // userSocket.fnAddUser(user);
                 res.json({token: token});
             });
     })(req, res, next);
