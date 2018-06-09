@@ -16,6 +16,7 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
             UsersDAO.fnGetUserByFacebookId(profile.id)
                 .then((user) => {
                     console.log('profile ++++++++++++++++++', profile);
+                    console.log('user ++++++++++++++++++', user);
                     if (!user) {
                         return done(null, user);
                     } else {
