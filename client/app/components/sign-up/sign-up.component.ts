@@ -68,6 +68,6 @@ export class SignUpComponent implements OnInit {
     }
 
     fnSignInOauth = (provider) => {
-        window.location.href = '/api/auth/' + provider;
+        window.location.href = '/api/auth/' + provider + '?role=' + this.signUpObj.roles;
     }
 }
