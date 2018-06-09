@@ -83,8 +83,8 @@ export default class Auth {
      * Returns a jwt token signed by the app secret
      * JWT token expires in 7 day.
      */
-    fnSignToken = (id) => {
-        return jwt.sign({id: id}, SECRET_SESSION, {expiresIn: '7d'});
+    fnSignToken = (obj) => {
+        return jwt.sign(obj, SECRET_SESSION, {expiresIn: '7d'});
     };
 
     /**

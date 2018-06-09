@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 import UsersDAO from './user.dao';
 import Auth from '../../auth/auth';
 
@@ -6,6 +8,7 @@ export default class UsersService {
 
     /**
      * Get all users
+     * @param {object} req - request object
      */
     fnGetUsers = (req) => {
         return new Promise((resolve, reject) => {
@@ -41,11 +44,16 @@ export default class UsersService {
             this.usersDAO
                 .fnCreateUser(userObj)
                 .then((user: any) => {
-                    const res  = {
-                        token: auth.fnSignToken(user.id),
-                        user: user,
-                    };
-                    resolve(res);
+                    const fullName = user.email.split('@')[0];
+                    const filterUser = _.pick(user, _.keys({
+                        id: null,
+                        email: null,
+                        roles: null,
+                        provider: null
+                    }));
+                    const newUserObj = _.assign({}, filterUser, {fullName: fullName});
+                    const token = auth.fnSignToken(newUserObj);
+                    resolve({token: token});
                 })
                 .catch((error) => reject(error));
         });
