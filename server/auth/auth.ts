@@ -1,6 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import * as compose from 'composable-middleware';
 import * as expressJwt from 'express-jwt';
+import * as _ from 'lodash';
 
 import UsersDAO from '../api/user/user.dao';
 import {Constant} from '../constant';
@@ -90,9 +91,13 @@ export default class Auth {
     /**
      * Set token cookie directly for oAuth strategies
      */
-    fnSetTokenCookie = (req, res) => {
+    fnSetTokenCookie = (req, res, err) => {
         console.log('+++++++++++++++ fnSetTokenCookie +++++++++++++++++++++++', req.user);
-        if (!req.user) {
+        if (err) {
+            console.error('error ', err);
+            return res.status(502).json(err);
+        }
+        if (!req.user || _.isEmpty(req.user)) {
             console.error('Auth:fnSetTokenCookie()', 'Something went wrong, please try again.');
             return res.status(404).json({message: 'Something went wrong, please try again.'});
         }

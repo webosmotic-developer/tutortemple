@@ -38,6 +38,7 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
                                             .then(res => done(null, res))
                                             .catch(err => done(err));
                                     } else {
+                                        console.error('This email is already registered.');
                                         return done(null, false, { message: 'This email is already registered.' });
                                     }
                                 })
