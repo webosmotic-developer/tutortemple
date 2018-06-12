@@ -19,9 +19,9 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
             UsersDAO.fnGetUserByFacebookId(profile.id)
                 .then((user) => {
                     console.log('profile ++++++++++++++++++', profile);
-                    if (user) {
+                    if (user && !_.isEmpty(user)) {
                         return done(null, user);
-                    } else if (_.isEmpty(user)) {
+                    } else if (_.isEmpty(user) || !user) {
                         if (!req.query.state) {
                             console.error('User doesn\'t exists');
                             return done({ message: 'User does not exists.' });
