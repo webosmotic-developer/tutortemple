@@ -11,7 +11,8 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
             clientID: process.env.FACEBOOK_ID,
             clientSecret: process.env.FACEBOOK_SECRET,
             callbackURL: process.env.FACEBOOK_CALLBACK_URL,
-            profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified']
+            profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified'],
+            passReqToCallback: true
         },
         function (req, accessToken, refreshToken, profile, done) {
             UsersDAO.fnGetUserByFacebookId(profile.id)
@@ -22,7 +23,7 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
                     if (!user) {
                         return done(null, user);
                     } else {
-                        if (!req._toParam) {
+                        /*if (!req._toParam) {
                             console.error('User doesn\'t exists');
                             return done(null, {
                                 message: {
@@ -39,7 +40,8 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
                             UsersDAO.fnCreateUser(user)
                                 .then(response => done(null, response))
                                 .catch(err => done(err));
-                        }
+                        }*/
+                        return done(null, user);
                     }
                 })
                 .catch((err) => {

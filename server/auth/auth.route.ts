@@ -40,7 +40,8 @@ export default function fnAuthRoutes(router) {
             scope: ['email'],
             successRedirect: '/',
             failureRedirect: '/',
-            session: false
+            session: false,
+            state: req.query.role
         })(req, res, next);
     });
 
