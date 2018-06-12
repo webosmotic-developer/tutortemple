@@ -24,7 +24,7 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
                     } else if (_.isEmpty(user) || !user) {
                         if (!req.query.state) {
                             console.error('User doesn\'t exists');
-                            return done({ message: 'User does not exists.' });
+                            return done(null, false, { message: 'User does not exists.' });
                         } else {
                             UsersDAO.fnGetUserByEmail(profile.email)
                                 .then(response => {
@@ -37,16 +37,16 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
                                         UsersDAO.fnCreateUser(user)
                                             .then(res => done(null, res))
                                             .catch(err => {
-                                                console.error(err);
+                                                console.error('facebookStrategy:fnCreateUser', err);
                                                 return done(err);
                                             });
                                     } else {
                                         console.error('This email is already registered.');
-                                        return done({ message: 'This email is already registered.' });
+                                        return done(null, false, { message: 'This email is already registered.' });
                                     }
                                 })
                                 .catch(err => {
-                                    console.error(err);
+                                    console.error('facebookStrategy:fnCreateUser', err);
                                     return done(err);
                                 });
 
