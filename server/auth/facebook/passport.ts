@@ -23,25 +23,19 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
                     if (!user) {
                         return done(null, user);
                     } else {
-                        /*if (!req._toParam) {
+                        if (!req.query.state) {
                             console.error('User doesn\'t exists');
-                            return done(null, {
-                                message: {
-                                    name: 'error',
-                                    detail: 'User doesn\'t exist.',
-                                }
-                            });
+                            return done(null, user);
                         } else {
                             user = {
                                 email: profile._json.email,
-                                roles: req._toParam,
+                                roles: req.query.state,
                                 facebook: profile._json
                             };
                             UsersDAO.fnCreateUser(user)
                                 .then(response => done(null, response))
                                 .catch(err => done(err));
-                        }*/
-                        return done(null, user);
+                        }
                     }
                 })
                 .catch((err) => {
