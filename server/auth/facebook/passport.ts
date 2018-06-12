@@ -1,5 +1,6 @@
 import * as passport from 'passport';
 import * as dotenv from 'dotenv';
+import * as _ from 'lodash';
 
 dotenv.load({path: '.env'});
 
@@ -18,23 +19,30 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
             UsersDAO.fnGetUserByFacebookId(profile.id)
                 .then((user) => {
                     console.log('profile ++++++++++++++++++', profile);
-                    console.log('user ++++++++++++++++++', user);
-                    console.log('req ++++++++++++++++++', req);
-                    if (!user) {
+                    if (user) {
                         return done(null, user);
-                    } else {
+                    } else if (_.isEmpty(user)) {
                         if (!req.query.state) {
                             console.error('User doesn\'t exists');
-                            return done(null, user);
+                            return done(null, false, { message: 'User does not exists.' });
                         } else {
-                            user = {
-                                email: profile._json.email,
-                                roles: req.query.state,
-                                facebook: profile._json
-                            };
-                            UsersDAO.fnCreateUser(user)
-                                .then(response => done(null, response))
+                            UsersDAO.fnGetUserByEmail(profile.email)
+                                .then(response => {
+                                    if (!response) {
+                                        user = {
+                                            email: profile._json.email,
+                                            roles: req.query.state,
+                                            facebook: profile._json
+                                        };
+                                        UsersDAO.fnCreateUser(user)
+                                            .then(res => done(null, res))
+                                            .catch(err => done(err));
+                                    } else {
+                                        return done(null, false, { message: 'This email is already registered.' });
+                                    }
+                                })
                                 .catch(err => done(err));
+
                         }
                     }
                 })
