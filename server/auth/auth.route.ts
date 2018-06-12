@@ -36,17 +36,29 @@ export default function fnAuthRoutes(router) {
     router.route('/auth/facebook').get((req, res, next) => {
         console.log('req query string ', req.query);
         req._toParam = req.query.role;
+        const callbackURL = process.env.FACEBOOK_CALLBACK_URL + '?role=' + req.query.role;
         passport.authenticate('facebook', {
             scope: ['email'],
             successRedirect: '/',
             failureRedirect: '/',
-            session: false
+            session: false,
+            callbackURL: callbackURL,
         })(req, res, next);
     });
 
-    router.route('/auth/facebook/callback')
-        .get(passport.authenticate('facebook', {
+    router.route('/auth/facebook/callback').get((req, res, next) => {
+        console.log('req query string in callback ', req.query);
+        passport.authenticate('facebook', {
+            callbackURL: process.env.FACEBOOK_CALLBACK_URL + '?role=' + req.query.role,
             failureRedirect: '/',
             session: false
-        }), auth.fnSetTokenCookie);
+        })(auth.fnSetTokenCookie);
+    });
+
+    /*router.route('/auth/facebook/callback')
+        .get(passport.authenticate('facebook', {
+            callbackURL: process.env.FACEBOOK_CALLBACK_URL + "?role=" + req.query.queryParams,
+            failureRedirect: '/',
+            session: false
+        }), auth.fnSetTokenCookie);*/
 }

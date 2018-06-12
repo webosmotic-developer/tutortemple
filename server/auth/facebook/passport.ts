@@ -18,13 +18,13 @@ export default function fnSetupFacebookPassport(UsersDAO: any) {
                 .then((user) => {
                     console.log('profile ++++++++++++++++++', profile);
                     console.log('user ++++++++++++++++++', user);
-                    console.log('req ++++++++++++++++++', req._toParam);
+                    console.log('req ++++++++++++++++++', req);
                     if (!user) {
                         return done(null, user);
                     } else {
                         if (!req._toParam) {
                             console.error('User doesn\'t exists');
-                            return done({
+                            return done(null, {
                                 message: {
                                     name: 'error',
                                     detail: 'User doesn\'t exist.',
