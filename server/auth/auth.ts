@@ -96,7 +96,17 @@ export default class Auth {
             console.error('Auth:fnSetTokenCookie()', 'Something went wrong, please try again.');
             return res.status(404).json({message: 'Something went wrong, please try again.'});
         }
-        const token = this.fnSignToken(req.user.id);
+        let fullName = req.user.email.split('@')[0];
+        if (req.user.facebook && (req.user.facebook.last_name || req.user.facebook.first_name)) {
+            fullName = req.user.facebook.first_name + ' ' + req.user.facebook.last_name;
+        }
+        const token = this.fnSignToken({
+            id: req.user.id,
+            email: req.user.email,
+            roles: req.user.roles,
+            provider: 'facebook',
+            fullName,
+        });
         res.cookie('token', JSON.stringify(token));
         res.redirect('/');
     };
