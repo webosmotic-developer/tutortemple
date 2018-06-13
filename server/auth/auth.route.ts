@@ -47,7 +47,6 @@ export default function fnAuthRoutes(router) {
 
     router.route('/auth/facebook/callback')
         .get(passport.authenticate('facebook', {
-            failureRedirect: '/',
             session: false,
             failWithError: true,
         }), auth.fnSetTokenCookie, (err, req, res, next) => {
